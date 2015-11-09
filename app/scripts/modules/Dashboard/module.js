@@ -20,6 +20,11 @@ define(['angular'],
                             url: '/',
                             templateUrl: 'views/Dashboard/activities/home.html'
                         })
+                        .state('dashboard.explore', {
+                            url: '/explore',
+                            templateUrl: 'views/Dashboard/activities/explore.html'
+                        })
+
                 }
             ])
     }
