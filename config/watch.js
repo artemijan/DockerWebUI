@@ -7,7 +7,7 @@ module.exports = {
         tasks: ['bowerInstall']
     },
     js: {
-        files: ['<%= appConfig.app %>/scripts/{,*/}*.js'],
+        files: ['<%= appConfig.app %>/scripts/**/*.js'],
         tasks: ['requirejs:server'],
         options: {
             livereload: '<%= connect.options.livereload %>'

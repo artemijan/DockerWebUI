@@ -3,20 +3,22 @@
  */
 define([
         'angular',
+        'Env',
         'twitter-bootstrap',
         'angular-ui-router',
         'angular-sanitize',
         'angular-animate',
+        'angular-mocks',
         'ui.bootstrap',
         'ui.bootstrap.tpls',
         'modules/Common/index',
         'modules/Auth/index',
         'modules/Dashboard/index'
     ],
-    function (angular, objectpath, tv4) {
+    function (angular, Env, objectpath, tv4) {
         window.tv4 = tv4;
         window.ObjectPath = objectpath;
-        var app = angular.module('DockerWebUI', [
+        var deps = [
             'ui.router',
             'ngAnimate',
             'ngSanitize',
@@ -25,7 +27,11 @@ define([
             'DockerWebUI.Common',
             'DockerWebUI.Auth',
             'DockerWebUI.Dashboard'
-        ]);
+        ];
+        if(Env.useFakeAPIService){
+            deps[deps.length] = 'ngMockE2E';
+        }
+        var app = angular.module('DockerWebUI', deps);
         app.run([
             '$rootScope',
             '$state',

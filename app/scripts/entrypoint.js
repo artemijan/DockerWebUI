@@ -4,6 +4,8 @@
 require.config({
     paths: {
         'angular': '../../bower_components/angular/angular',
+        'lodash': '../../bower_components/lodash/lodash',
+        'angular-mocks':'../../bower_components/angular-mocks/angular-mocks',
         'jquery': '../../bower_components/jquery/dist/jquery',
         'twitter-bootstrap': '../../bower_components/bootstrap/dist/js/bootstrap',
         'angular-ui-router': '../../bower_components/angular-ui-router/release/angular-ui-router',
@@ -19,9 +21,15 @@ require.config({
      * require some fine tuning to dependency mgt'
      */
     shim: {
+        'lodash': {
+            deps: []
+        },
         'angular': {
             deps: ['jquery'],
             exports: 'angular'
+        },
+        'angular-mocks': {
+            deps: ['angular']
         },
         'angular-animate': {
             deps: ['angular']

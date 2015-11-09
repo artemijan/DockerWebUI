@@ -4,10 +4,11 @@
 define(['angular'],
     function (angular) {
         'use strict';
-        return angular.module('DockerWebUI.Dashboard', ['ui.router'])
+        return angular.module('DockerWebUI.Dashboard', ['ui.router', 'DockerWebUI.Auth'])
             .config([
                 '$stateProvider',
                 function ($stateProvider) {
+
                     $stateProvider
                         .state('dashboard', {
                             url: '/dashboard',

@@ -7,17 +7,21 @@ define(
         'use strict';
         module.controller('DockerWebUI.Dashboard.MasterController', [
             '$scope',
-            function ($scope) {
+            'DockerWebUI.Auth.Authentication',
+            function ($scope, authService) {
                 var vm = this;
+
                 vm.headerLabel = 'Logicify docker';
-                vm.createImage = function () {
+                vm.createRepo = function () {
                     //create an image here
                 };
                 vm.createBuild = function () {
                 };
                 vm.logIn = function () {
+                    authService.logIn();
                 };
                 vm.signIn = function () {
+                    authService.signUp();
                 };
                 return vm;
             }
