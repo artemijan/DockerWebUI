@@ -104,5 +104,17 @@ define([], function () {
             ]
         };
     };
+    dataSource.getVersion = function () {
+        return {
+            "Version": "1.5.0",
+            "Os": "linux",
+            "KernelVersion": "3.18.5-tinycore64",
+            "GoVersion": "go1.4.1",
+            "GitCommit": "a8a31ef",
+            "Arch": "amd64",
+            "ApiVersion": "1.20",
+            "Experimental": false
+        };
+    };
     return dataSource;
 });

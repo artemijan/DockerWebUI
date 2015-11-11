@@ -15,9 +15,17 @@ define(['../module'], function (module) {
             var imagesUrl = '/images';
             var volumesUrl = '/volumes';
             var routes = {
+                docker: {
+                    version: function () {
+                        return {
+                            method: METHODS.GET,
+                            url: '/version'
+                        }
+                    }
+                },
                 containers: {
                     list: function (all) {
-                        var url = containerUrl+'/json';
+                        var url = containerUrl + '/json';
                         if (all === true) {
                             url += '?all=1';
                         }
@@ -94,7 +102,7 @@ define(['../module'], function (module) {
                 },
                 images: {
                     list: function (all, digest) {
-                        var url = imagesUrl+'/json';
+                        var url = imagesUrl + '/json';
                         if (all === true) {
                             url += '?all=1';
                         } else {

@@ -23,6 +23,9 @@ define(
                 $httpBackend.whenGET(/\/volumes/).respond(function (method, url, data) {
                     return [200, fakeDataSource.getVolumes()];
                 });
+                $httpBackend.whenGET(/\/version/).respond(function (method, url, data) {
+                    return [200, fakeDataSource.getVersion()];
+                });
                 // Pass through everything else
                 $httpBackend.whenGET(/.*/).passThrough();
                 $httpBackend.whenPOST(/.*/).passThrough();

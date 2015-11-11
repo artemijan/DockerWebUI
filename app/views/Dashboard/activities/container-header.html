@@ -1,4 +1,23 @@
 <div class="page-header container-header">
+    <div class="docker-version">
+        <div class="docker-version-header">Docker info</div>
+        <div class="docker-version-item">
+            <span>Version:</span>
+            <span ng-bind="$docker.Version"></span>
+        </div>
+        <div class="docker-version-item">
+            <span>OS:</span>
+            <span ng-bind="$docker.Os"></span>
+        </div>
+        <div class="docker-version-item">
+            <span>Architecture (x86 or x64):</span>
+            <span ng-bind="$docker.Arch"></span>
+        </div>
+        <div class="docker-version-item">
+            <span>Api version:</span>
+            <span ng-bind="$docker.ApiVersion"></span>
+        </div>
+    </div>
     <h3 ng-bind="controller.headerName"></h3>
     <div class="pull-right header-actions-control">
         <span class="glyphicon glyphicon-plus" ng-click="controller.create()"></span>
