@@ -6,14 +6,14 @@ define(
     function (module) {
         'use strict';
 
-        MasterController.$name = 'DockerWebUI.Dashboard.Containers.MasterController';
+        MasterController.$name = 'DockerWebUI.Dashboard.Volumes.MasterController';
         function MasterController() {
             var self = this;
             return self;
         }
 
-        containers.$inject = ['$q', '$log', 'DockerWebUI.Dashboard.Containers.DataService'];
-        function containers($q, $log, dataService) {
+        volumes.$inject = ['$q', '$log', 'DockerWebUI.Dashboard.Volumes.DataService'];
+        function volumes($q, $log, dataService) {
             var deferred = $q.defer();
             dataService.list()
                 .then(function (containers) {
@@ -28,7 +28,7 @@ define(
 
 
         MasterController.listControllerResolver = {
-            containers: containers
+            volumes: volumes
         };
         module.controller(MasterController.$name, MasterController);
         return MasterController;

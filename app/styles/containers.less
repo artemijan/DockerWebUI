@@ -1,25 +1,48 @@
-.containers-list-container {
+.page-header.container-header {
+  margin-bottom: 30px;
+  .header-actions-control {
+    margin-top: 12px;
+  }
+  .header-actions-control:hover {
+    cursor: pointer;
+    span {
+      font-weight: bold;
+    }
+  }
+}
+
+.menu-item-container {
   .list-group {
+    .actions-control {
+      clear: both;
+    }
     .list-group-item:hover {
-      background-color: #d6d6d6;
-      cursor: pointer;
+      background-color: #ffffff;
     }
-    .list-group-item{
+    .list-group-item {
+      .control-item:hover {
+        cursor: pointer;
+        font-weight: bold;
+      }
+      .control-item {
+        margin-left: 2px;
+      }
       margin-bottom: 3px;
+      .list-group-item-heading {
+        clear: both;
+      }
+      .header-divider {
+        border-bottom: solid #dbdbdb 1px;
+        height: 1px;
+      }
+      p {
+        margin-left: 10px;
+      }
     }
   }
-  .container-header{
-    color: #000000;
-    background-color: #00BFFF;
-    border-radius: 7px;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    min-height: 50px;
-    padding: 5px;
-    text-align: center;
+  .object-property {
   }
-  .object-property{}
-  .object-value{
+  .object-value {
     font-weight: bold;
   }
 }

@@ -14,7 +14,11 @@ define(['../module'], function (module) {
     ];
     function Controller($scope, containers) {
         var vm = this;
+        vm.headerName = 'Containers panel';
         vm.list = containers;
+        vm.create = function () {
+            alert('created container')
+        }
     }
 
     module.controller(Controller.$name, Controller);

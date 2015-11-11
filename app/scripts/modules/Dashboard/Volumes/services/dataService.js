@@ -2,7 +2,7 @@
  * Created by artem on 11/11/15.
  */
 define(['../module'], function (module) {
-    module.service('DockerWebUI.Dashboard.Containers.DataService',
+    module.service('DockerWebUI.Dashboard.Volumes.DataService',
         [
             'growl',
             'DockerWebUI.Common.APIRoutes',
@@ -10,7 +10,7 @@ define(['../module'], function (module) {
             function (growl, apiRoutes, httpService) {
                 var service = {};
                 service.list = function (all) {
-                    return httpService.request(apiRoutes.containers.list(all))
+                    return httpService.request(apiRoutes.volumes.list(all))
                         .then(function (response) {
                             return response;
                         })

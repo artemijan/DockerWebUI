@@ -4,17 +4,23 @@
 define(['angular'],
     function (angular) {
         'use strict';
-        return angular.module('DockerWebUI.Dashboard.Images',[])
+        return angular.module('DockerWebUI.Dashboard.Images', [])
             .config([
                 '$stateProvider',
                 function ($stateProvider) {
-
+                    var $moduleManager = angular.$moduleManager;
                     $stateProvider
                         .state('dashboard.images', {
                             url: '/images',
+                            abstract: true,
                             templateUrl: 'views/Dashboard/Images/master.html',
-                            controller: 'DockerWebUI.Dashboard.Images.ListController as controller'
+                            controller: 'DockerWebUI.Dashboard.Images.MasterController'
                         })
+                        .state('dashboard.images.list', $moduleManager.stateForController('DockerWebUI.Dashboard.Images.ListController', {
+                            controllerAs: 'controller',
+                            url: '/list',
+                            templateUrl: 'views/Dashboard/Images/activities/list.html'
+                        }))
                 }
             ])
     }

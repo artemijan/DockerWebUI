@@ -94,7 +94,7 @@ define(['../module'], function (module) {
                 },
                 images: {
                     list: function (all, digest) {
-                        var url = imagesUrl;
+                        var url = imagesUrl+'/json';
                         if (all === true) {
                             url += '?all=1';
                         } else {

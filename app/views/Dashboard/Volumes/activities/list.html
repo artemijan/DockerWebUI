@@ -1,4 +1,4 @@
-<div class="containers-list-container">
+<div class="volumes-list-container">
     <div ng-include="'views/Dashboard/activities/container-header.html'"></div>
     <div class="list-group">
         <a class="list-group-item" ng-repeat="item in controller.list">
@@ -7,19 +7,19 @@
                 <span class="control-item glyphicon glyphicon-trash"></span>
             </div>
             <h5 class="list-group-item-heading">
-                <span class="object-property">ContainerId: </span>
-                <span class="object-value" ng-bind="item.Id"></span>
+                <span class="object-property">Name: </span>
+                <span class="object-value" ng-bind="item.Name"></span>
                 <div class="header-divider"></div>
             </h5>
 
             <p class="list-group-item-text">
-                <span class="object-property">Image: </span>
-                <span class="object-value" ng-bind="item.Image"></span>
+                <span class="object-property">Driver: </span>
+                <span class="object-value" ng-bind="item.Driver"></span>
             </p>
 
             <p class="list-group-item-text">
-                <span class="object-property">ImageId: </span>
-                <span class="object-value" ng-bind="item.ImageID"></span>
+                <span class="object-property">Mount point: </span>
+                <span class="object-value" ng-bind="item.Mountpoint"></span>
             </p>
         </a>
     </div>

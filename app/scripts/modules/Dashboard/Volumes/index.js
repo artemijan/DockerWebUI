@@ -4,7 +4,9 @@
 define(
     [
         'moduleManager',
-        './controllers/listController'
+        './controllers/listController',
+        './controllers/masterController',
+        './services/dataService'
     ],
     function ($moduleManager) {
         'use strict';

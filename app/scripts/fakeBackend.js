@@ -13,8 +13,15 @@ define(
         App.run([
             '$httpBackend',
             function ($httpBackend) {
-                $httpBackend.whenGET('/containers/json').respond(function (method, url, data) {
+                $httpBackend.whenGET(/\/containers\/json/).respond(function (method, url, data) {
                     return [200, fakeDataSource.getContainers()];
+                });
+
+                $httpBackend.whenGET(/\/images\/json/).respond(function (method, url, data) {
+                    return [200, fakeDataSource.getImages()];
+                });
+                $httpBackend.whenGET(/\/volumes/).respond(function (method, url, data) {
+                    return [200, fakeDataSource.getVolumes()];
                 });
                 // Pass through everything else
                 $httpBackend.whenGET(/.*/).passThrough();
