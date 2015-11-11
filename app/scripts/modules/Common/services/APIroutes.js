@@ -2,7 +2,7 @@
  * Created by artem on 11/9/15.
  */
 define(['../module'], function (module) {
-    module.service('DockerWebUI.Common.APIRoutes', [
+    module.factory('DockerWebUI.Common.APIRoutes', [
         function () {
             var METHODS = {
                 GET: 'GET',

@@ -5,7 +5,7 @@ require.config({
     paths: {
         'angular': '../../bower_components/angular/angular',
         'lodash': '../../bower_components/lodash/lodash',
-        'angular-mocks':'../../bower_components/angular-mocks/angular-mocks',
+        'angular-mocks': '../../bower_components/angular-mocks/angular-mocks',
         'jquery': '../../bower_components/jquery/dist/jquery',
         'twitter-bootstrap': '../../bower_components/bootstrap/dist/js/bootstrap',
         'angular-ui-router': '../../bower_components/angular-ui-router/release/angular-ui-router',
@@ -13,7 +13,8 @@ require.config({
         'angular-animate': '../../bower_components/angular-animate/angular-animate',
         'angular-sanitize': '../../bower_components/angular-sanitize/angular-sanitize',
         'ui.bootstrap': '../../bower_components/angular-bootstrap/ui-bootstrap',
-        'ui.bootstrap.tpls': '../../bower_components/angular-bootstrap/ui-bootstrap-tpls'
+        'ui.bootstrap.tpls': '../../bower_components/angular-bootstrap/ui-bootstrap-tpls',
+        'angular-growl': '../../bower_components/angular-growl-v2/build/angular-growl'
     },
 
     /**
@@ -27,6 +28,9 @@ require.config({
         'angular': {
             deps: ['jquery'],
             exports: 'angular'
+        },
+        'angular-growl': {
+            deps: ['angular', 'twitter-bootstrap']
         },
         'angular-mocks': {
             deps: ['angular']

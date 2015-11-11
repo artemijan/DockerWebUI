@@ -13,8 +13,8 @@ define(
         App.run([
             '$httpBackend',
             function ($httpBackend) {
-                $httpBackend.whenGET('/service/ping').respond(function (method, url, data) {
-                    return 'Ping successful!';
+                $httpBackend.whenGET('/containers').respond(function (method, url, data) {
+                    return [200, {payload: ['hello', 'native', 'you']}];
                 });
                 // Pass through everything else
                 $httpBackend.whenGET(/.*/).passThrough();

@@ -7,6 +7,7 @@ define([
     'angular',
     'angular-ui-router',
     'globalConfig',
+    './moduleManager',
     './modules/App',
     'fakeBackend',
     'setup'

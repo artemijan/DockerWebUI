@@ -4,7 +4,8 @@
 define(
     [
         //dependencies here
-        './services/APIroutes'
+        './services/APIroutes',
+        './services/httpService'
     ],
     function () {
         'use strict';

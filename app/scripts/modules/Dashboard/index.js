@@ -3,6 +3,12 @@
  */
 define(
     [
+    /**
+     * Submodules
+     */
+        './Containers/index',
+        './Volumes/index',
+        './Images/index',
         './controllers/masterController'
     ],
     function () {

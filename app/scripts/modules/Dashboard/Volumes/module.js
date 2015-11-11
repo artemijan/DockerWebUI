@@ -4,6 +4,6 @@
 define(['angular'],
     function (angular) {
         'use strict';
-        return angular.module('DockerWebUI.Dashboard.Volumes');
+        return angular.module('DockerWebUI.Dashboard.Volumes',[]);
     }
 );

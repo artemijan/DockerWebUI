@@ -3,10 +3,13 @@
  */
 define(
     [
-        './controllers/listController'
+        'moduleManager',
+        './controllers/masterController',
+        './controllers/listController',
+        './services/dataService'
     ],
-    function () {
+    function ($moduleManager) {
         'use strict';
-        //NOOP
+        $moduleManager.registerModuleComponents(arguments);
     }
 );

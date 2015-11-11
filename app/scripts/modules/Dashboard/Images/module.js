@@ -4,7 +4,7 @@
 define(['angular'],
     function (angular) {
         'use strict';
-        return angular.module('DockerWebUI.Dashboard.Images')
+        return angular.module('DockerWebUI.Dashboard.Images',[])
             .config([
                 '$stateProvider',
                 function ($stateProvider) {

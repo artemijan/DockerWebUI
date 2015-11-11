@@ -3,10 +3,11 @@
  */
 define(
     [
+        'moduleManager',
         './controllers/listController'
     ],
-    function () {
+    function ($moduleManager) {
         'use strict';
-        //NOOP
+        $moduleManager.registerModuleComponents(arguments);
     }
 );
