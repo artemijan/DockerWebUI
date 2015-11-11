@@ -14,7 +14,7 @@ define(['../module'], function (module) {
     ];
     function Controller($scope, containers) {
         var vm = this;
-        vm.list = containers.payload;
+        vm.list = containers;
     }
 
     module.controller(Controller.$name, Controller);

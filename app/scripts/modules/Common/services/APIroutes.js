@@ -17,7 +17,7 @@ define(['../module'], function (module) {
             var routes = {
                 containers: {
                     list: function (all) {
-                        var url = containerUrl;
+                        var url = containerUrl+'/json';
                         if (all === true) {
                             url += '?all=1';
                         }

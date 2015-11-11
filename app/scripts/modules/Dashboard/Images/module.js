@@ -11,7 +11,7 @@ define(['angular'],
 
                     $stateProvider
                         .state('dashboard.images', {
-                            url: '/dashboard/images',
+                            url: '/images',
                             templateUrl: 'views/Dashboard/Images/master.html',
                             controller: 'DockerWebUI.Dashboard.Images.ListController as controller'
                         })
