@@ -55,6 +55,7 @@ define([
                         });
                     $rootScope.$on('$stateChangeStart', function (event, nextState, nextStateParams, curState, curStateParams) {
                         $modalStack.dismissAll();
+                        $rootScope.currentState = nextState;
                         //Redirect handling
                         if (nextState.data && nextState.data.redirect) {
                             event.preventDefault();
@@ -63,6 +64,12 @@ define([
                         }
                         return true;
                     });
+                    $rootScope.stateMatch = function (inState) {
+                        if ($rootScope.currentState && $rootScope.currentState.name && $rootScope.currentState.name.indexOf(inState) >= 0) {
+                            return true;
+                        }
+                        return false;
+                    };
                 }
             ]).config([
                 '$stateProvider',

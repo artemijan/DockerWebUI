@@ -10,11 +10,14 @@
         </div>
         <div class="collapse navbar-collapse main-menu" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li class="active"><a ui-sref="root">Home</a></li>
+                <li ng-class="{'active':stateMatch('dashboard.home')}"><a ui-sref="root">Home</a></li>
                 <!--<li><a ui-sref="dashboard.explore">Explore</a></li>-->
-                <li><a ui-sref="dashboard.volumes.list">Volumes</a></li>
-                <li><a ui-sref="dashboard.images.list">Images</a></li>
-                <li><a ui-sref="dashboard.containers.list">Containers</a></li>
+                <li ng-class="{'active':stateMatch('dashboard.volumes')}"><a
+                        ui-sref="dashboard.volumes.list">Volumes</a></li>
+                <li ng-class="{'active':stateMatch('dashboard.images')}"><a ui-sref="dashboard.images.list">Images</a>
+                </li>
+                <li ng-class="{'active':stateMatch('dashboard.containers')}"><a ui-sref="dashboard.containers.list">Containers</a>
+                </li>
                 <!--<li class="dropdown main-menu-dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Create<span class="caret"></span></a>
                     <ul class="dropdown-menu">
