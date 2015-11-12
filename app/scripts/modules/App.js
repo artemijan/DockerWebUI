@@ -40,11 +40,11 @@ define([
                 '$rootScope',
                 '$state',
                 '$stateParams',
-                '$modalStack',
+                '$uibModalStack',
                 'growl',
                 'DockerWebUI.Common.APIRoutes',
                 'DockerWebUI.Common.HttpService',
-                function ($rootScope, $state, $stateParams, $modalStack, growl, apiRoutes, httpService) {
+                function ($rootScope, $state, $stateParams, $uibModalStack, growl, apiRoutes, httpService) {
                     //get docker version
                     httpService.request(apiRoutes.docker.version())
                         .then(function (response) {
@@ -54,7 +54,7 @@ define([
                             growl.error(response);
                         });
                     $rootScope.$on('$stateChangeStart', function (event, nextState, nextStateParams, curState, curStateParams) {
-                        $modalStack.dismissAll();
+                        $uibModalStack.dismissAll();
                         $rootScope.currentState = nextState;
                         //Redirect handling
                         if (nextState.data && nextState.data.redirect) {

@@ -5,6 +5,7 @@ define(
     [
         'moduleManager',
         './controllers/listController',
+        './controllers/modalController',
         './controllers/masterController',
         './services/dataService'
     ],
