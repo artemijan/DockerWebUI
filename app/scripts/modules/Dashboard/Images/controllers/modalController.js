@@ -12,6 +12,14 @@ define(
                 '$uibModalInstance',
                 function ($scope, $uibModalInstance) {
                     var vm = this;
+                    vm.image = {file:null};
+                    $scope.fileName = '';
+                    vm.setFile = function () {
+                        //console.log($scope.image);
+                    };
+                    $scope.flip = function () {
+                        $scope.isFlipped = !$scope.isFlipped;
+                    };
                     $scope.create = function () {
                         $uibModalInstance.close('closed');
                     };

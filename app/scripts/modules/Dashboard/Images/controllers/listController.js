@@ -24,7 +24,8 @@ define(['../module'], function (module) {
                 templateUrl: 'views/Dashboard/Images/createModal.html',
                 controller: 'DockerWebUI.Dashboard.Images.ModalController',
                 controllerAs: 'controller',
-                size: 'xs'
+                size: 'xs',
+                windowClass:'flipper-container'
             });
 
             modalInstance.result.then(function (createdItem) {
