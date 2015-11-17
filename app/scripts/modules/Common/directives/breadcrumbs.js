@@ -12,7 +12,7 @@ define(
                         //if string then just add text to element
                         'string': function (element, text, delimiter, isLast) {
                             var span = angular.element('<span/>');
-                            span.addClass('label label-info');
+                            span.addClass('label label-default');
                             text = text;
                             if (isLast) {
                                 span.text(text);

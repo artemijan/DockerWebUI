@@ -1,0 +1,19 @@
+//.ng-hide-add         { animation:0.5s lightSpeedOut ease; }
+
+/* when showing the picture */
+.ng-hide-remove {
+  animation: 1s lightSpeedOut ease;
+}
+
+/* fade in effect */
+@keyframes lightSpeedOut {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    transform: translate3d(0, 0, 100%) skewX(30deg);
+    transform: translate3d(0, 0, 100%) skewX(30deg);
+    opacity: 1;
+  }
+}

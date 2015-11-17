@@ -1,4 +1,4 @@
-<breadcrumbs class="breadcrumb"></breadcrumbs>
+<breadcrumbs class="breadcrumbs"></breadcrumbs>
 <div class="tags-list-container">
     <div ng-include="'views/Dashboard/activities/container-header.html'"></div>
     <div class="tags-container-holder">
@@ -17,68 +17,73 @@
             </a>
         </div>
         <div class="tag-content pull-right">
-            <div>
-                <div class="history-container" >
-                    <div ng-if="controller.manifests[controller.currentTag].parsedHistory">
-                        <div class="object-displayer">
-                            <span class="object-property">Architecture: </span>
-                            <span class="object-value" ng-bind="controller.manifests[controller.currentTag].architecture"></span>
-                        </div>
-                        <h5 class="submenu-item label label-default">Config</h5>
 
-                        <div class="submenu-config">
-                            <div class="object-displayer">
-                                <span class="object-property">Cmd: </span>
+            <div class="history-container" ng-show="controller.manifests[controller.currentTag].parsedHistory">
+
+                <div class="object-displayer">
+                    <span class="object-property">Architecture: </span>
+                        <span class="object-value"
+                              ng-bind="controller.manifests[controller.currentTag].architecture"></span>
+                </div>
+                <h5 class="submenu-item label label-default">Config</h5>
+
+                <div class="submenu-config">
+                    <div class="object-displayer">
+                        <span class="object-property">Cmd: </span>
                                 <span class="object-value"
                                       ng-bind="(controller.manifests[controller.currentTag].parsedHistory.config.Cmd || []).join(';')"></span>
-                            </div>
-                            <div class="object-displayer">
-                                <span class="object-property">Domain name: </span>
-                                <span class="object-value" ng-bind="controller.manifests[controller.currentTag].parsedHistory.config.Domainname"></span>
-                            </div>
-                            <div class="object-displayer">
-                                <span class="object-property">Entry point: </span>
-                                <span class="object-value" ng-bind="controller.manifests[controller.currentTag].parsedHistory.config.Entrypoint[0]"></span>
-                            </div>
-                            <div class="object-displayer">
-                                <span class="object-property">Environment: </span>
+                    </div>
+                    <div class="object-displayer">
+                        <span class="object-property">Domain name: </span>
+                            <span class="object-value"
+                                  ng-bind="controller.manifests[controller.currentTag].parsedHistory.config.Domainname"></span>
+                    </div>
+                    <div class="object-displayer">
+                        <span class="object-property">Entry point: </span>
+                            <span class="object-value"
+                                  ng-bind="controller.manifests[controller.currentTag].parsedHistory.config.Entrypoint[0]"></span>
+                    </div>
+                    <div class="object-displayer">
+                        <span class="object-property">Environment: </span>
 
-                                <div class="object-value margin-left-item"
-                                     ng-repeat="env in controller.manifests[controller.currentTag].parsedHistory.config.Env" ng-bind="env"></div>
-                            </div>
-                            <div class="object-displayer">
-                                <span class="object-property">Exposed ports: </span>
+                        <div class="object-value margin-left-item"
+                             ng-repeat="env in controller.manifests[controller.currentTag].parsedHistory.config.Env"
+                             ng-bind="env"></div>
+                    </div>
+                    <div class="object-displayer">
+                        <span class="object-property">Exposed ports: </span>
 
-                                <div class="margin-left-item object-value"
-                                     ng-repeat="(port,value) in controller.manifests[controller.currentTag].parsedHistory.config.ExposedPorts"
-                                     ng-bind="port"></div>
-                            </div>
-                            <div class="object-displayer">
-                                <span class="object-property">Labels: </span>
+                        <div class="margin-left-item object-value"
+                             ng-repeat="(port,value) in controller.manifests[controller.currentTag].parsedHistory.config.ExposedPorts"
+                             ng-bind="port"></div>
+                    </div>
+                    <div class="object-displayer">
+                        <span class="object-property">Labels: </span>
 
-                                <div class="object-value" ng-repeat="(label,value) in controller.manifests[controller.currentTag].parsedHistory.config.Labels">
-                                    <span ng-bind="label+'='"></span>
-                                    <span ng-bind="value"></span>
-                                </div>
-                            </div>
-                            <div class="object-displayer">
-                                <span class="object-property">Volumes: </span>
-
-                                <div class="margin-left-item object-value"
-                                     ng-repeat="(volume,value) in controller.manifests[controller.currentTag].parsedHistory.config.Volumes"
-                                     ng-bind="volume"></div>
-                            </div>
-                            <div class="object-displayer">
-                                <span class="object-property">Working dir: </span>
-                                <span class="object-value" ng-bind="controller.manifests[controller.currentTag].parsedHistory.config.WorkingDir"></span>
-                            </div>
+                        <div class="object-value"
+                             ng-repeat="(label,value) in controller.manifests[controller.currentTag].parsedHistory.config.Labels">
+                            <span ng-bind="label+'='"></span>
+                            <span ng-bind="value"></span>
                         </div>
                     </div>
-                    <div ng-if="!controller.manifests[controller.currentTag].parsedHistory">
-                        <h3>There is no manifest</h3>
+                    <div class="object-displayer">
+                        <span class="object-property">Volumes: </span>
+
+                        <div class="margin-left-item object-value"
+                             ng-repeat="(volume,value) in controller.manifests[controller.currentTag].parsedHistory.config.Volumes"
+                             ng-bind="volume"></div>
+                    </div>
+                    <div class="object-displayer">
+                        <span class="object-property">Working dir: </span>
+                            <span class="object-value"
+                                  ng-bind="controller.manifests[controller.currentTag].parsedHistory.config.WorkingDir"></span>
                     </div>
                 </div>
             </div>
+            <div ng-show="!controller.manifests[controller.currentTag].parsedHistory">
+                <h3>There is no manifest</h3>
+            </div>
+
         </div>
     </div>
 </div>
