@@ -4,7 +4,7 @@
     <div class="list-group">
         <a class="list-group-item" ng-repeat="item in controller.list | filter:controller.searchFor">
             <div class="pull-right actions-control">
-                <span class="control-item glyphicon glyphicon-trash" title="delete all tags"></span>
+                <span class="control-item glyphicon glyphicon-trash" ng-click="delete(item)" title="delete all tags"></span>
             </div>
             <h5 class="list-group-item-heading truncate" ui-sref="dashboard.tags.list({repo:item})">
                 <span class="object-property">Image name: </span>

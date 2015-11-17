@@ -9,14 +9,17 @@ define(['../module'], function (module) {
     };
     Controller.$inject = [
         '$scope',
-        '$uibModal',
+        'growl',
         '$log',
         'images'
     ];
-    function Controller($scope, $uibModal, $log, images) {
+    function Controller($scope, growl,$log, images) {
         var vm = this;
         vm.headerName = 'Images panel';
         vm.searchFor = '';
+        $scope.delete = function(){
+            growl.info('Deletion is not supported yet by v2 registry.');
+        };
         vm.searchPlaceHolder = 'Search for images';
         vm.list = images;
     }

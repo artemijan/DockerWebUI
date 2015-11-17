@@ -25,30 +25,18 @@
                         <span class="object-value"
                               ng-bind="controller.manifests[controller.currentTag].architecture"></span>
                 </div>
+                <div class="object-displayer">
+                    <span class="object-property">Created: </span>
+                        <span class="object-value"
+                              ng-bind="controller.manifests[controller.currentTag].parsedHistory.created"></span>
+                </div>
                 <h5 class="submenu-item label label-default">Config</h5>
 
                 <div class="submenu-config">
                     <div class="object-displayer">
-                        <span class="object-property">Cmd: </span>
-                                <span class="object-value"
-                                      ng-bind="(controller.manifests[controller.currentTag].parsedHistory.config.Cmd || []).join(';')"></span>
-                    </div>
-                    <div class="object-displayer">
                         <span class="object-property">Domain name: </span>
                             <span class="object-value"
                                   ng-bind="controller.manifests[controller.currentTag].parsedHistory.config.Domainname"></span>
-                    </div>
-                    <div class="object-displayer">
-                        <span class="object-property">Entry point: </span>
-                            <span class="object-value"
-                                  ng-bind="controller.manifests[controller.currentTag].parsedHistory.config.Entrypoint[0]"></span>
-                    </div>
-                    <div class="object-displayer">
-                        <span class="object-property">Environment: </span>
-
-                        <div class="object-value margin-left-item"
-                             ng-repeat="env in controller.manifests[controller.currentTag].parsedHistory.config.Env"
-                             ng-bind="env"></div>
                     </div>
                     <div class="object-displayer">
                         <span class="object-property">Exposed ports: </span>
@@ -73,10 +61,34 @@
                              ng-repeat="(volume,value) in controller.manifests[controller.currentTag].parsedHistory.config.Volumes"
                              ng-bind="volume"></div>
                     </div>
-                    <div class="object-displayer">
-                        <span class="object-property">Working dir: </span>
+                    <div class="btn-group btn-group-xs">
+                        <a class="show-details-button btn btn-default" ng-click="toggleCollapse()" data-toggle="collapse" data-parent="#accordion" href="#show-more-accordion">Details
+                            <span class="glyphicon" ng-class="{'glyphicon-collapse-down':!showDetails,'glyphicon-collapse-up':showDetails}"></span>
+                        </a>
+                    </div>
+                    <div id="show-more-accordion" class="show-details collapse out">
+                        <div class="object-displayer">
+                            <span class="object-property">Entry point: </span>
+                            <span class="object-value"
+                                  ng-bind="controller.manifests[controller.currentTag].parsedHistory.config.Entrypoint[0]"></span>
+                        </div>
+                        <div class="object-displayer">
+                            <span class="object-property">Cmd: </span>
+                                <span class="object-value"
+                                      ng-bind="(controller.manifests[controller.currentTag].parsedHistory.config.Cmd || []).join(';')"></span>
+                        </div>
+                        <div class="object-displayer">
+                            <span class="object-property">Environment: </span>
+
+                            <div class="object-value margin-left-item"
+                                 ng-repeat="env in controller.manifests[controller.currentTag].parsedHistory.config.Env"
+                                 ng-bind="env"></div>
+                        </div>
+                        <div class="object-displayer">
+                            <span class="object-property">Working dir: </span>
                             <span class="object-value"
                                   ng-bind="controller.manifests[controller.currentTag].parsedHistory.config.WorkingDir"></span>
+                        </div>
                     </div>
                 </div>
             </div>

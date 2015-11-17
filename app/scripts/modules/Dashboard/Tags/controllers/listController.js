@@ -9,7 +9,6 @@ define(['../module'], function (module) {
     };
     Controller.$inject = [
         '$scope',
-        '$timeout',
         'growl',
         '$log',
         '$stateParams',
@@ -17,7 +16,7 @@ define(['../module'], function (module) {
         'tags',
         'firstManifest'
     ];
-    function Controller($scope, $timeout, growl, $log, $stateParams, dataService, tags, manifest) {
+    function Controller($scope, growl, $log, $stateParams, dataService, tags, manifest) {
         var vm = this;
         var repoName = $stateParams.repo;
         vm.headerName = 'Image: ' + repoName;
@@ -25,7 +24,10 @@ define(['../module'], function (module) {
         vm.searchFor = '';
         vm.list = tags.tags;
         vm.delete = function (tag) {
-            dataService.delete(repoName, tag);
+            growl.info('Deletion is not supported yet by v2 registry.');
+        };
+        $scope.toggleCollapse = function () {
+            $scope.showDetails = !$scope.showDetails;
         };
         vm.manifests = {};
         function parseHistory(manifest) {
@@ -35,6 +37,9 @@ define(['../module'], function (module) {
                 }
                 if (Array.isArray(manifest.history)) {
                     vm.manifests[manifest.tag].parsedHistory = JSON.parse(manifest.history[0]['v1Compatibility']);
+                    if (vm.manifests[manifest.tag].parsedHistory.created) {
+                        vm.manifests[manifest.tag].parsedHistory.created = new Date(vm.manifests[manifest.tag].parsedHistory.created).toString();
+                    }
                     return vm.manifests[manifest.tag].parsedHistory;
                 }
             }
