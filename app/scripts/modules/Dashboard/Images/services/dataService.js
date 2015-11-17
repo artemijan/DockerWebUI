@@ -10,7 +10,7 @@ define(['../module'], function (module) {
             function (growl, apiRoutes, httpService) {
                 var service = {};
                 service.list = function (all) {
-                    return httpService.request(apiRoutes.images.list(all))
+                    return httpService.request(apiRoutes.repo.list(all))
                         .then(function (response) {
                             return response;
                         })

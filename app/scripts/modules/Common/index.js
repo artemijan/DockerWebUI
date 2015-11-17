@@ -5,7 +5,9 @@ define(
     [
         //dependencies here
         './services/APIroutes',
-        './services/httpService'
+        './services/backendErrors',
+        './services/httpService',
+        './directives/breadcrumbs'
     ],
     function () {
         'use strict';

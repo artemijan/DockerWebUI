@@ -1,108 +1,214 @@
 /**
  * Created by artem on 11/11/15.
  */
-define([], function () {
+define(['lodash'], function (_) {
     var dataSource = {};
-    dataSource.getContainers = function () {
-        return [
-            {
-                "Id": "8dfafdbc3a40",
-                "Names": ["/boring_feynman"],
-                "Image": "ubuntu:latest",
-                "ImageID": "d74508fb6632491cea586a1fd7d748dfc5274cd6fdfedee309ecdcbc2bf5cb82",
-                "Command": "echo 1",
-                "Created": 1367854155,
-                "Status": "Exit 0",
-                "Ports": [{"PrivatePort": 2222, "PublicPort": 3333, "Type": "tcp"}],
-                "Labels": {
-                    "com.example.vendor": "Acme",
-                    "com.example.license": "GPL",
-                    "com.example.version": "1.0"
-                },
-                "SizeRw": 12288,
-                "SizeRootFs": 0
-            },
-            {
-                "Id": "9cd87474be90",
-                "Names": ["/coolName"],
-                "Image": "ubuntu:latest",
-                "ImageID": "d74508fb6632491cea586a1fd7d748dfc5274cd6fdfedee309ecdcbc2bf5cb82",
-                "Command": "echo 222222",
-                "Created": 1367854155,
-                "Status": "Exit 0",
-                "Ports": [],
-                "Labels": {},
-                "SizeRw": 12288,
-                "SizeRootFs": 0
-            },
-            {
-                "Id": "3176a2479c92",
-                "Names": ["/sleepy_dog"],
-                "Image": "ubuntu:latest",
-                "ImageID": "d74508fb6632491cea586a1fd7d748dfc5274cd6fdfedee309ecdcbc2bf5cb82",
-                "Command": "echo 3333333333333333",
-                "Created": 1367854154,
-                "Status": "Exit 0",
-                "Ports": [],
-                "Labels": {},
-                "SizeRw": 12288,
-                "SizeRootFs": 0
-            },
-            {
-                "Id": "4cb07b47f9fb",
-                "Names": ["/running_cat"],
-                "Image": "ubuntu:latest",
-                "ImageID": "d74508fb6632491cea586a1fd7d748dfc5274cd6fdfedee309ecdcbc2bf5cb82",
-                "Command": "echo 444444444444444444444444444444444",
-                "Created": 1367854152,
-                "Status": "Exit 0",
-                "Ports": [],
-                "Labels": {},
-                "SizeRw": 12288,
-                "SizeRootFs": 0
-            }
-        ]
+    var repos = {
+        'ubuntu': {},
+        'apache': {},
+        'linux': {},
+        'mysql':{}
     };
-    dataSource.getImages = function () {
-        return [
-            {
-                "RepoTags": [
-                    "ubuntu:12.04",
-                    "ubuntu:precise",
-                    "ubuntu:latest"
+    _.forEach(repos, function (repo, repoName) {
+        repo['v2_1'] = {};
+        repo['latest'] = {};
+        if (repoName == 'ubuntu') {
+            repo['latest'] = {
+                "name": "my-ubuntu",
+                "tag": "latest",
+                "architecture": "amd64",
+                "fsLayers": [
+                    {
+                        "blobSum": "sha256:a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4"
+                    },
+                    {
+                        "blobSum": "sha256:a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4"
+                    },
+                    {
+                        "blobSum": "sha256:44be94a95984bb47dc3a193f59bf8c04d5e877160b745b119278f38753a6f58f"
+                    },
+                    {
+                        "blobSum": "sha256:4fbaa2f403dffcc9050448f94c0e0b32d1a12b74379738a53a69e686cce4da7e"
+                    },
+                    {
+                        "blobSum": "sha256:863735b9fd15b7617298df56e767c6057c4439df896d1d4b0e5e09fa50377496"
+                    }
                 ],
-                "Id": "8dbd9e392a964056420e5d58ca5cc376ef18e2de93b5cc90e868a1bbc8318c1c",
-                "Created": 1365714795,
-                "Size": 131506275,
-                "VirtualSize": 131506275,
-                "Labels": {}
-            },
-            {
-                "RepoTags": [
-                    "ubuntu:12.10",
-                    "ubuntu:quantal"
+                "history": [
+                    {
+                        "v1Compatibility": "{\"id\":\"ca4d7b1b9a51f72ff4da652d96943f657b4898889924ac3dae5df958dba0dc4a\",\"parent\":\"a467a7c6794fd7ebd5bd0e2dcb83a656ac8302e549c4a2cc29c524aea5c5623b\",\"created\":\"2015-11-10T00:35:07.49709192Z\",\"container\":\"84382e3b0cae0e65ad88f32aee022f08bd2b88ba703b3b52b2f5af6bafdedc62\",\"container_config\":{\"Hostname\":\"a52c17016130\",\"Domainname\":\"\",\"User\":\"\",\"Memory\":0,\"MemorySwap\":0,\"CpuShares\":0,\"Cpuset\":\"\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"PortSpecs\":null,\"ExposedPorts\":null,\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[],\"Cmd\":[\"/bin/sh\",\"-c\",\"#(nop) CMD [\\\"/bin/bash\\\"]\"],\"Image\":\"a467a7c6794fd7ebd5bd0e2dcb83a656ac8302e549c4a2cc29c524aea5c5623b\",\"Volumes\":null,\"WorkingDir\":\"\",\"Entrypoint\":null,\"NetworkDisabled\":false,\"MacAddress\":\"\",\"OnBuild\":null,\"Labels\":{}},\"docker_version\":\"1.9.0\",\"config\":{\"Hostname\":\"a52c17016130\",\"Domainname\":\"\",\"User\":\"\",\"Memory\":0,\"MemorySwap\":0,\"CpuShares\":0,\"Cpuset\":\"\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"PortSpecs\":null,\"ExposedPorts\":null,\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[],\"Cmd\":[\"/bin/bash\"],\"Image\":\"a467a7c6794fd7ebd5bd0e2dcb83a656ac8302e549c4a2cc29c524aea5c5623b\",\"Volumes\":null,\"WorkingDir\":\"\",\"Entrypoint\":null,\"NetworkDisabled\":false,\"MacAddress\":\"\",\"OnBuild\":null,\"Labels\":{}},\"architecture\":\"amd64\",\"os\":\"linux\",\"Size\":0}\n"
+                    },
+                    {
+                        "v1Compatibility": "{\"id\":\"ca4d7b1b9a51f72ff4da652d96943f657b4898889924ac3dae5df958dba0dc4a\",\"parent\":\"a467a7c6794fd7ebd5bd0e2dcb83a656ac8302e549c4a2cc29c524aea5c5623b\",\"created\":\"2015-11-10T00:35:07.49709192Z\",\"container\":\"84382e3b0cae0e65ad88f32aee022f08bd2b88ba703b3b52b2f5af6bafdedc62\",\"container_config\":{\"Hostname\":\"a52c17016130\",\"Domainname\":\"\",\"User\":\"\",\"Memory\":0,\"MemorySwap\":0,\"CpuShares\":0,\"Cpuset\":\"\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"PortSpecs\":null,\"ExposedPorts\":null,\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[],\"Cmd\":[\"/bin/sh\",\"-c\",\"#(nop) CMD [\\\"/bin/bash\\\"]\"],\"Image\":\"a467a7c6794fd7ebd5bd0e2dcb83a656ac8302e549c4a2cc29c524aea5c5623b\",\"Volumes\":null,\"WorkingDir\":\"\",\"Entrypoint\":null,\"NetworkDisabled\":false,\"MacAddress\":\"\",\"OnBuild\":null,\"Labels\":{}},\"docker_version\":\"1.9.0\",\"config\":{\"Hostname\":\"a52c17016130\",\"Domainname\":\"\",\"User\":\"\",\"Memory\":0,\"MemorySwap\":0,\"CpuShares\":0,\"Cpuset\":\"\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"PortSpecs\":null,\"ExposedPorts\":null,\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[],\"Cmd\":[\"/bin/bash\"],\"Image\":\"a467a7c6794fd7ebd5bd0e2dcb83a656ac8302e549c4a2cc29c524aea5c5623b\",\"Volumes\":null,\"WorkingDir\":\"\",\"Entrypoint\":null,\"NetworkDisabled\":false,\"MacAddress\":\"\",\"OnBuild\":null,\"Labels\":{}},\"architecture\":\"amd64\",\"os\":\"linux\",\"Size\":0}\n"
+                    },
+                    {
+                        "v1Compatibility": "{\"id\":\"a467a7c6794fd7ebd5bd0e2dcb83a656ac8302e549c4a2cc29c524aea5c5623b\",\"parent\":\"ea358092da773eff1664fd484edeffb0011f26b4f1dd34ad11b73db57c91d8ae\",\"created\":\"2015-11-10T00:35:06.935155618Z\",\"container\":\"76df6131f570a75ec2b88968396b46094e5ef4dd9647923d39165c276c83a77e\",\"container_config\":{\"Hostname\":\"a52c17016130\",\"Domainname\":\"\",\"User\":\"\",\"Memory\":0,\"MemorySwap\":0,\"CpuShares\":0,\"Cpuset\":\"\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"PortSpecs\":null,\"ExposedPorts\":null,\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[],\"Cmd\":[\"/bin/sh\",\"-c\",\"sed -i 's/^#\\\\s*\\\\(deb.*universe\\\\)$/\\\\1/g' /etc/apt/sources.list\"],\"Image\":\"ea358092da773eff1664fd484edeffb0011f26b4f1dd34ad11b73db57c91d8ae\",\"Volumes\":null,\"WorkingDir\":\"\",\"Entrypoint\":null,\"NetworkDisabled\":false,\"MacAddress\":\"\",\"OnBuild\":null,\"Labels\":{}},\"docker_version\":\"1.9.0\",\"config\":{\"Hostname\":\"a52c17016130\",\"Domainname\":\"\",\"User\":\"\",\"Memory\":0,\"MemorySwap\":0,\"CpuShares\":0,\"Cpuset\":\"\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"PortSpecs\":null,\"ExposedPorts\":null,\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[],\"Cmd\":null,\"Image\":\"ea358092da773eff1664fd484edeffb0011f26b4f1dd34ad11b73db57c91d8ae\",\"Volumes\":null,\"WorkingDir\":\"\",\"Entrypoint\":null,\"NetworkDisabled\":false,\"MacAddress\":\"\",\"OnBuild\":null,\"Labels\":{}},\"architecture\":\"amd64\",\"os\":\"linux\",\"Size\":1895}\n"
+                    },
+                    {
+                        "v1Compatibility": "{\"id\":\"ea358092da773eff1664fd484edeffb0011f26b4f1dd34ad11b73db57c91d8ae\",\"parent\":\"2332d8973c9393d58c03693bb4d8ec8bd853bafda3b897d48b391a1d0ba9ffb0\",\"created\":\"2015-11-10T00:35:05.435215271Z\",\"container\":\"4f07ddf9e9ccaa5331759f9985b0406bc513a9180f4b2a5ae8b14abac9872e4a\",\"container_config\":{\"Hostname\":\"a52c17016130\",\"Domainname\":\"\",\"User\":\"\",\"Memory\":0,\"MemorySwap\":0,\"CpuShares\":0,\"Cpuset\":\"\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"PortSpecs\":null,\"ExposedPorts\":null,\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[],\"Cmd\":[\"/bin/sh\",\"-c\",\"echo '#!/bin/sh' \\u003e /usr/sbin/policy-rc.d \\u0009\\u0026\\u0026 echo 'exit 101' \\u003e\\u003e /usr/sbin/policy-rc.d \\u0009\\u0026\\u0026 chmod +x /usr/sbin/policy-rc.d \\u0009\\u0009\\u0026\\u0026 dpkg-divert --local --rename --add /sbin/initctl \\u0009\\u0026\\u0026 cp -a /usr/sbin/policy-rc.d /sbin/initctl \\u0009\\u0026\\u0026 sed -i 's/^exit.*/exit 0/' /sbin/initctl \\u0009\\u0009\\u0026\\u0026 echo 'force-unsafe-io' \\u003e /etc/dpkg/dpkg.cfg.d/docker-apt-speedup \\u0009\\u0009\\u0026\\u0026 echo 'DPkg::Post-Invoke { \\\"rm -f /var/cache/apt/archives/*.deb /var/cache/apt/archives/partial/*.deb /var/cache/apt/*.bin || true\\\"; };' \\u003e /etc/apt/apt.conf.d/docker-clean \\u0009\\u0026\\u0026 echo 'APT::Update::Post-Invoke { \\\"rm -f /var/cache/apt/archives/*.deb /var/cache/apt/archives/partial/*.deb /var/cache/apt/*.bin || true\\\"; };' \\u003e\\u003e /etc/apt/apt.conf.d/docker-clean \\u0009\\u0026\\u0026 echo 'Dir::Cache::pkgcache \\\"\\\"; Dir::Cache::srcpkgcache \\\"\\\";' \\u003e\\u003e /etc/apt/apt.conf.d/docker-clean \\u0009\\u0009\\u0026\\u0026 echo 'Acquire::Languages \\\"none\\\";' \\u003e /etc/apt/apt.conf.d/docker-no-languages \\u0009\\u0009\\u0026\\u0026 echo 'Acquire::GzipIndexes \\\"true\\\"; Acquire::CompressionTypes::Order:: \\\"gz\\\";' \\u003e /etc/apt/apt.conf.d/docker-gzip-indexes\"],\"Image\":\"2332d8973c9393d58c03693bb4d8ec8bd853bafda3b897d48b391a1d0ba9ffb0\",\"Volumes\":null,\"WorkingDir\":\"\",\"Entrypoint\":null,\"NetworkDisabled\":false,\"MacAddress\":\"\",\"OnBuild\":null,\"Labels\":{}},\"docker_version\":\"1.9.0\",\"config\":{\"Hostname\":\"a52c17016130\",\"Domainname\":\"\",\"User\":\"\",\"Memory\":0,\"MemorySwap\":0,\"CpuShares\":0,\"Cpuset\":\"\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"PortSpecs\":null,\"ExposedPorts\":null,\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[],\"Cmd\":null,\"Image\":\"2332d8973c9393d58c03693bb4d8ec8bd853bafda3b897d48b391a1d0ba9ffb0\",\"Volumes\":null,\"WorkingDir\":\"\",\"Entrypoint\":null,\"NetworkDisabled\":false,\"MacAddress\":\"\",\"OnBuild\":null,\"Labels\":{}},\"architecture\":\"amd64\",\"os\":\"linux\",\"Size\":194533}\n"
+                    },
+                    {
+                        "v1Compatibility": "{\"id\":\"2332d8973c9393d58c03693bb4d8ec8bd853bafda3b897d48b391a1d0ba9ffb0\",\"created\":\"2015-11-10T00:35:00.65973012Z\",\"container\":\"a52c170161301c502361a4b26921b82ac873a35c7b8f7f1f8a85453d747a3c05\",\"container_config\":{\"Hostname\":\"a52c17016130\",\"Domainname\":\"\",\"User\":\"\",\"Memory\":0,\"MemorySwap\":0,\"CpuShares\":0,\"Cpuset\":\"\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"PortSpecs\":null,\"ExposedPorts\":null,\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":null,\"Cmd\":[\"/bin/sh\",\"-c\",\"#(nop) ADD file:531ac3e55db4293b8f2a989e5e19d1123fba9f7bf2803357d754a023c98e6ffb in /\"],\"Image\":\"\",\"Volumes\":null,\"WorkingDir\":\"\",\"Entrypoint\":null,\"NetworkDisabled\":false,\"MacAddress\":\"\",\"OnBuild\":null,\"Labels\":null},\"docker_version\":\"1.9.0\",\"config\":{\"Hostname\":\"a52c17016130\",\"Domainname\":\"\",\"User\":\"\",\"Memory\":0,\"MemorySwap\":0,\"CpuShares\":0,\"Cpuset\":\"\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"PortSpecs\":null,\"ExposedPorts\":null,\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":null,\"Cmd\":null,\"Image\":\"\",\"Volumes\":null,\"WorkingDir\":\"\",\"Entrypoint\":null,\"NetworkDisabled\":false,\"MacAddress\":\"\",\"OnBuild\":null,\"Labels\":null},\"architecture\":\"amd64\",\"os\":\"linux\",\"Size\":187722872}\n"
+                    }
                 ],
-                "ParentId": "27cf784147099545",
-                "Id": "b750fe79269d2ec9a3c593ef05b4332b1d1a02a62b4accb2c21d589ff2f5f2dc",
-                "Created": 1364102658,
-                "Size": 24653,
-                "VirtualSize": 180116135,
-                "Labels": {
-                    "com.example.version": "v1"
-                }
+                "schemaVersion": 1,
+                "signatures": [
+                    {
+                        "header": {
+                            "jwk": {
+                                "crv": "P-256",
+                                "kid": "WP7X:PAP2:ET62:UH5V:EZKL:VDZE:N7VW:MMTK:X2MD:XPY6:C56J:Q4ED",
+                                "kty": "EC",
+                                "x": "dg0a18uSKgGaTSOm0f5T-E5jaQKm2u3mREazJHHW3FY",
+                                "y": "Ps2LnXILtAXKcy7OfkynZy5WQB8vBR3Vy_Yj2A5K7Y8"
+                            },
+                            "alg": "ES256"
+                        },
+                        "signature": "OmdwJ3ADBEhhMGITObtSZY0cmtd6V_byHhSLIoT1cROsXu3XCpsoKZjTBiaFjTR-uNQ7mgJUQxjj0ivtQgtCvw",
+                        "protected": "eyJmb3JtYXRMZW5ndGgiOjk3MzEsImZvcm1hdFRhaWwiOiJDbjAiLCJ0aW1lIjoiMjAxNS0xMS0xNlQxMjo0NzoxOVoifQ"
+                    }
+                ]
             }
-        ];
-    };
-    dataSource.getVolumes = function () {
+        }
+        if (repoName == 'mysql') {
+            repo['latest'] = {
+                "name": "mysql",
+                "tag": "latest",
+                "architecture": "amd64",
+                "fsLayers": [
+                    {
+                        "blobSum": "sha256:a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4"
+                    },
+                    {
+                        "blobSum": "sha256:a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4"
+                    },
+                    {
+                        "blobSum": "sha256:a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4"
+                    },
+                    {
+                        "blobSum": "sha256:a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4"
+                    },
+                    {
+                        "blobSum": "sha256:8f70c3247bdee7fa13d30f09d775a8f6de8e15222ebca3595b2ac9f9362e7078"
+                    },
+                    {
+                        "blobSum": "sha256:a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4"
+                    },
+                    {
+                        "blobSum": "sha256:c8c9562885c705f2faa20465964190d7bd66ec5232431a6a271793e72550484d"
+                    },
+                    {
+                        "blobSum": "sha256:6811f2d1418461e8c8be18c44a63b5ea3dff057e5973a8d88075baf0e42efe53"
+                    },
+                    {
+                        "blobSum": "sha256:35d00561f0f680649ce6f78bd348ba6913168ad6548f252cd16c85ac6671dc4e"
+                    },
+                    {
+                        "blobSum": "sha256:a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4"
+                    },
+                    {
+                        "blobSum": "sha256:a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4"
+                    },
+                    {
+                        "blobSum": "sha256:dfa3b0251642a2b6d5fddd310f352ea52fc2f6c617b0e34f57fa8559662dd97b"
+                    },
+                    {
+                        "blobSum": "sha256:e0e4f8d6fd753a659f3bafe51c3e78f7430fe36604d244e08d2efa52d6d71cfd"
+                    },
+                    {
+                        "blobSum": "sha256:d7c17ae5318e464b2fc3770c6143c99855fb5007cb2e07908a763e521d7eadd8"
+                    },
+                    {
+                        "blobSum": "sha256:05650b627af595aa476fa9f35e743726cdd29f5d397913720bb2190dbdb48c0e"
+                    },
+                    {
+                        "blobSum": "sha256:a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4"
+                    },
+                    {
+                        "blobSum": "sha256:237d5fcd25cfc217c7f2ddd2be7172e9fa5c181acc58d0a188de333bebec5f73"
+                    }
+                ],
+                "history": [
+                    {
+                        "v1Compatibility": "{\"id\":\"51aa388e5cbee7e8ff4efeebbb6044f084c1ef4374857947fea50c95976811f3\",\"parent\":\"e9e2648c8f5fe0a6d464613cbc109b49921e94fca83d8d9652d0bbdd71a73d6c\",\"created\":\"2015-11-10T20:11:23.373486197Z\",\"container\":\"3cfc90b968b22345698627604e01f5511a8134794e139e21bdf40bcaa2591222\",\"container_config\":{\"Hostname\":\"206de6b7c8f7\",\"Domainname\":\"\",\"User\":\"\",\"Memory\":0,\"MemorySwap\":0,\"CpuShares\":0,\"Cpuset\":\"\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"PortSpecs\":null,\"ExposedPorts\":{\"3306/tcp\":{}},\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[\"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\",\"MYSQL_MAJOR=5.7\",\"MYSQL_VERSION=5.7.9-1debian8\"],\"Cmd\":[\"/bin/sh\",\"-c\",\"#(nop) CMD [\\\"mysqld\\\"]\"],\"Image\":\"e9e2648c8f5fe0a6d464613cbc109b49921e94fca83d8d9652d0bbdd71a73d6c\",\"Volumes\":{\"/var/lib/mysql\":{}},\"WorkingDir\":\"\",\"Entrypoint\":[\"/entrypoint.sh\"],\"NetworkDisabled\":false,\"MacAddress\":\"\",\"OnBuild\":[],\"Labels\":{}},\"docker_version\":\"1.9.0\",\"config\":{\"Hostname\":\"206de6b7c8f7\",\"Domainname\":\"\",\"User\":\"\",\"Memory\":0,\"MemorySwap\":0,\"CpuShares\":0,\"Cpuset\":\"\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"PortSpecs\":null,\"ExposedPorts\":{\"3306/tcp\":{}},\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[\"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\",\"MYSQL_MAJOR=5.7\",\"MYSQL_VERSION=5.7.9-1debian8\"],\"Cmd\":[\"mysqld\"],\"Image\":\"e9e2648c8f5fe0a6d464613cbc109b49921e94fca83d8d9652d0bbdd71a73d6c\",\"Volumes\":{\"/var/lib/mysql\":{}},\"WorkingDir\":\"\",\"Entrypoint\":[\"/entrypoint.sh\"],\"NetworkDisabled\":false,\"MacAddress\":\"\",\"OnBuild\":[],\"Labels\":{}},\"architecture\":\"amd64\",\"os\":\"linux\",\"Size\":0}\n"
+                    },
+                    {
+                        "v1Compatibility": "{\"id\":\"51aa388e5cbee7e8ff4efeebbb6044f084c1ef4374857947fea50c95976811f3\",\"parent\":\"e9e2648c8f5fe0a6d464613cbc109b49921e94fca83d8d9652d0bbdd71a73d6c\",\"created\":\"2015-11-10T20:11:23.373486197Z\",\"container\":\"3cfc90b968b22345698627604e01f5511a8134794e139e21bdf40bcaa2591222\",\"container_config\":{\"Hostname\":\"206de6b7c8f7\",\"Domainname\":\"\",\"User\":\"\",\"Memory\":0,\"MemorySwap\":0,\"CpuShares\":0,\"Cpuset\":\"\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"PortSpecs\":null,\"ExposedPorts\":{\"3306/tcp\":{}},\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[\"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\",\"MYSQL_MAJOR=5.7\",\"MYSQL_VERSION=5.7.9-1debian8\"],\"Cmd\":[\"/bin/sh\",\"-c\",\"#(nop) CMD [\\\"mysqld\\\"]\"],\"Image\":\"e9e2648c8f5fe0a6d464613cbc109b49921e94fca83d8d9652d0bbdd71a73d6c\",\"Volumes\":{\"/var/lib/mysql\":{}},\"WorkingDir\":\"\",\"Entrypoint\":[\"/entrypoint.sh\"],\"NetworkDisabled\":false,\"MacAddress\":\"\",\"OnBuild\":[],\"Labels\":{}},\"docker_version\":\"1.9.0\",\"config\":{\"Hostname\":\"206de6b7c8f7\",\"Domainname\":\"\",\"User\":\"\",\"Memory\":0,\"MemorySwap\":0,\"CpuShares\":0,\"Cpuset\":\"\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"PortSpecs\":null,\"ExposedPorts\":{\"3306/tcp\":{}},\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[\"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\",\"MYSQL_MAJOR=5.7\",\"MYSQL_VERSION=5.7.9-1debian8\"],\"Cmd\":[\"mysqld\"],\"Image\":\"e9e2648c8f5fe0a6d464613cbc109b49921e94fca83d8d9652d0bbdd71a73d6c\",\"Volumes\":{\"/var/lib/mysql\":{}},\"WorkingDir\":\"\",\"Entrypoint\":[\"/entrypoint.sh\"],\"NetworkDisabled\":false,\"MacAddress\":\"\",\"OnBuild\":[],\"Labels\":{}},\"architecture\":\"amd64\",\"os\":\"linux\",\"Size\":0}\n"
+                    },
+                    {
+                        "v1Compatibility": "{\"id\":\"e9e2648c8f5fe0a6d464613cbc109b49921e94fca83d8d9652d0bbdd71a73d6c\",\"parent\":\"7b07ecfaec34adc02dbe5b0d5fff0c515759afbfc28496850163869e42730426\",\"created\":\"2015-11-10T20:11:22.809534414Z\",\"container\":\"6d6a0785a66a7f2f84b558e4df81d40c3027b7bb8bd44a3e591e210c1ebde37e\",\"container_config\":{\"Hostname\":\"206de6b7c8f7\",\"Domainname\":\"\",\"User\":\"\",\"Memory\":0,\"MemorySwap\":0,\"CpuShares\":0,\"Cpuset\":\"\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"PortSpecs\":null,\"ExposedPorts\":{\"3306/tcp\":{}},\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[\"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\",\"MYSQL_MAJOR=5.7\",\"MYSQL_VERSION=5.7.9-1debian8\"],\"Cmd\":[\"/bin/sh\",\"-c\",\"#(nop) EXPOSE 3306/tcp\"],\"Image\":\"7b07ecfaec34adc02dbe5b0d5fff0c515759afbfc28496850163869e42730426\",\"Volumes\":{\"/var/lib/mysql\":{}},\"WorkingDir\":\"\",\"Entrypoint\":[\"/entrypoint.sh\"],\"NetworkDisabled\":false,\"MacAddress\":\"\",\"OnBuild\":[],\"Labels\":{}},\"docker_version\":\"1.9.0\",\"config\":{\"Hostname\":\"206de6b7c8f7\",\"Domainname\":\"\",\"User\":\"\",\"Memory\":0,\"MemorySwap\":0,\"CpuShares\":0,\"Cpuset\":\"\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"PortSpecs\":null,\"ExposedPorts\":{\"3306/tcp\":{}},\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[\"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\",\"MYSQL_MAJOR=5.7\",\"MYSQL_VERSION=5.7.9-1debian8\"],\"Cmd\":null,\"Image\":\"7b07ecfaec34adc02dbe5b0d5fff0c515759afbfc28496850163869e42730426\",\"Volumes\":{\"/var/lib/mysql\":{}},\"WorkingDir\":\"\",\"Entrypoint\":[\"/entrypoint.sh\"],\"NetworkDisabled\":false,\"MacAddress\":\"\",\"OnBuild\":[],\"Labels\":{}},\"architecture\":\"amd64\",\"os\":\"linux\",\"Size\":0}\n"
+                    },
+                    {
+                        "v1Compatibility": "{\"id\":\"7b07ecfaec34adc02dbe5b0d5fff0c515759afbfc28496850163869e42730426\",\"parent\":\"e0bd003f998608a4839e40a4244997fd486825f9740df036426a94301df2e08f\",\"created\":\"2015-11-10T20:11:22.245369528Z\",\"container\":\"6a00aaf95624f220bde2af66eaef3c3c4f31ff18fc8d2550eb8735d46d966b1e\",\"container_config\":{\"Hostname\":\"206de6b7c8f7\",\"Domainname\":\"\",\"User\":\"\",\"Memory\":0,\"MemorySwap\":0,\"CpuShares\":0,\"Cpuset\":\"\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"PortSpecs\":null,\"ExposedPorts\":null,\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[\"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\",\"MYSQL_MAJOR=5.7\",\"MYSQL_VERSION=5.7.9-1debian8\"],\"Cmd\":[\"/bin/sh\",\"-c\",\"#(nop) ENTRYPOINT \\u0026{[\\\"/entrypoint.sh\\\"]}\"],\"Image\":\"e0bd003f998608a4839e40a4244997fd486825f9740df036426a94301df2e08f\",\"Volumes\":{\"/var/lib/mysql\":{}},\"WorkingDir\":\"\",\"Entrypoint\":[\"/entrypoint.sh\"],\"NetworkDisabled\":false,\"MacAddress\":\"\",\"OnBuild\":[],\"Labels\":{}},\"docker_version\":\"1.9.0\",\"config\":{\"Hostname\":\"206de6b7c8f7\",\"Domainname\":\"\",\"User\":\"\",\"Memory\":0,\"MemorySwap\":0,\"CpuShares\":0,\"Cpuset\":\"\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"PortSpecs\":null,\"ExposedPorts\":null,\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[\"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\",\"MYSQL_MAJOR=5.7\",\"MYSQL_VERSION=5.7.9-1debian8\"],\"Cmd\":null,\"Image\":\"e0bd003f998608a4839e40a4244997fd486825f9740df036426a94301df2e08f\",\"Volumes\":{\"/var/lib/mysql\":{}},\"WorkingDir\":\"\",\"Entrypoint\":[\"/entrypoint.sh\"],\"NetworkDisabled\":false,\"MacAddress\":\"\",\"OnBuild\":[],\"Labels\":{}},\"architecture\":\"amd64\",\"os\":\"linux\",\"Size\":0}\n"
+                    },
+                    {
+                        "v1Compatibility": "{\"id\":\"e0bd003f998608a4839e40a4244997fd486825f9740df036426a94301df2e08f\",\"parent\":\"fa882ed5d445e4924edb334519065732e5a2f169a3b3e6d67f62736f3c194c4d\",\"created\":\"2015-11-10T20:11:21.57324104Z\",\"container\":\"0afb6bbaac67f025aa73f75c7b2cc055a0d488cb2ce2d146b5d0cd5fb13d075d\",\"container_config\":{\"Hostname\":\"206de6b7c8f7\",\"Domainname\":\"\",\"User\":\"\",\"Memory\":0,\"MemorySwap\":0,\"CpuShares\":0,\"Cpuset\":\"\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"PortSpecs\":null,\"ExposedPorts\":null,\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[\"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\",\"MYSQL_MAJOR=5.7\",\"MYSQL_VERSION=5.7.9-1debian8\"],\"Cmd\":[\"/bin/sh\",\"-c\",\"#(nop) COPY file:174697bdc9dfe5f1b9736bfc3e5059f8d8930d200ef9448c4270db5d0b45cd5c in /entrypoint.sh\"],\"Image\":\"fa882ed5d445e4924edb334519065732e5a2f169a3b3e6d67f62736f3c194c4d\",\"Volumes\":{\"/var/lib/mysql\":{}},\"WorkingDir\":\"\",\"Entrypoint\":null,\"NetworkDisabled\":false,\"MacAddress\":\"\",\"OnBuild\":[],\"Labels\":{}},\"docker_version\":\"1.9.0\",\"config\":{\"Hostname\":\"206de6b7c8f7\",\"Domainname\":\"\",\"User\":\"\",\"Memory\":0,\"MemorySwap\":0,\"CpuShares\":0,\"Cpuset\":\"\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"PortSpecs\":null,\"ExposedPorts\":null,\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[\"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\",\"MYSQL_MAJOR=5.7\",\"MYSQL_VERSION=5.7.9-1debian8\"],\"Cmd\":[\"/bin/bash\"],\"Image\":\"fa882ed5d445e4924edb334519065732e5a2f169a3b3e6d67f62736f3c194c4d\",\"Volumes\":{\"/var/lib/mysql\":{}},\"WorkingDir\":\"\",\"Entrypoint\":null,\"NetworkDisabled\":false,\"MacAddress\":\"\",\"OnBuild\":[],\"Labels\":{}},\"architecture\":\"amd64\",\"os\":\"linux\",\"Size\":2667}\n"
+                    },
+                    {
+                        "v1Compatibility": "{\"id\":\"fa882ed5d445e4924edb334519065732e5a2f169a3b3e6d67f62736f3c194c4d\",\"parent\":\"4a1423420bbdba93093914ab2416b13198cc4c4d1952ca4f3dd030dbc24d45b0\",\"created\":\"2015-11-10T20:11:21.017499299Z\",\"container\":\"ce429aa25826a33ef2a2750d386dd75acf3feb199982c4698a37f2679d566876\",\"container_config\":{\"Hostname\":\"206de6b7c8f7\",\"Domainname\":\"\",\"User\":\"\",\"Memory\":0,\"MemorySwap\":0,\"CpuShares\":0,\"Cpuset\":\"\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"PortSpecs\":null,\"ExposedPorts\":null,\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[\"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\",\"MYSQL_MAJOR=5.7\",\"MYSQL_VERSION=5.7.9-1debian8\"],\"Cmd\":[\"/bin/sh\",\"-c\",\"#(nop) VOLUME [/var/lib/mysql]\"],\"Image\":\"4a1423420bbdba93093914ab2416b13198cc4c4d1952ca4f3dd030dbc24d45b0\",\"Volumes\":{\"/var/lib/mysql\":{}},\"WorkingDir\":\"\",\"Entrypoint\":null,\"NetworkDisabled\":false,\"MacAddress\":\"\",\"OnBuild\":[],\"Labels\":{}},\"docker_version\":\"1.9.0\",\"config\":{\"Hostname\":\"206de6b7c8f7\",\"Domainname\":\"\",\"User\":\"\",\"Memory\":0,\"MemorySwap\":0,\"CpuShares\":0,\"Cpuset\":\"\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"PortSpecs\":null,\"ExposedPorts\":null,\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[\"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\",\"MYSQL_MAJOR=5.7\",\"MYSQL_VERSION=5.7.9-1debian8\"],\"Cmd\":[\"/bin/bash\"],\"Image\":\"4a1423420bbdba93093914ab2416b13198cc4c4d1952ca4f3dd030dbc24d45b0\",\"Volumes\":{\"/var/lib/mysql\":{}},\"WorkingDir\":\"\",\"Entrypoint\":null,\"NetworkDisabled\":false,\"MacAddress\":\"\",\"OnBuild\":[],\"Labels\":{}},\"architecture\":\"amd64\",\"os\":\"linux\",\"Size\":0}\n"
+                    },
+                    {
+                        "v1Compatibility": "{\"id\":\"4a1423420bbdba93093914ab2416b13198cc4c4d1952ca4f3dd030dbc24d45b0\",\"parent\":\"a6c42d36b3d9edf9502817033960adefb1ba820b5d8c39a2d64cf234c88506cc\",\"created\":\"2015-11-10T20:11:20.443485162Z\",\"container\":\"d40784abd78b1a53df19059859fe6e40a17444841b27a9628ff26e9f8a960c42\",\"container_config\":{\"Hostname\":\"206de6b7c8f7\",\"Domainname\":\"\",\"User\":\"\",\"Memory\":0,\"MemorySwap\":0,\"CpuShares\":0,\"Cpuset\":\"\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"PortSpecs\":null,\"ExposedPorts\":null,\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[\"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\",\"MYSQL_MAJOR=5.7\",\"MYSQL_VERSION=5.7.9-1debian8\"],\"Cmd\":[\"/bin/sh\",\"-c\",\"sed -Ei 's/^(bind-address|log)/#\\u0026/' /etc/mysql/my.cnf \\u0009\\u0026\\u0026 echo 'skip-host-cache\\\\nskip-name-resolve' | awk '{ print } $1 == \\\"[mysqld]\\\" \\u0026\\u0026 c == 0 { c = 1; system(\\\"cat\\\") }' /etc/mysql/my.cnf \\u003e /tmp/my.cnf \\u0009\\u0026\\u0026 mv /tmp/my.cnf /etc/mysql/my.cnf\"],\"Image\":\"a6c42d36b3d9edf9502817033960adefb1ba820b5d8c39a2d64cf234c88506cc\",\"Volumes\":null,\"WorkingDir\":\"\",\"Entrypoint\":null,\"NetworkDisabled\":false,\"MacAddress\":\"\",\"OnBuild\":[],\"Labels\":{}},\"docker_version\":\"1.9.0\",\"config\":{\"Hostname\":\"206de6b7c8f7\",\"Domainname\":\"\",\"User\":\"\",\"Memory\":0,\"MemorySwap\":0,\"CpuShares\":0,\"Cpuset\":\"\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"PortSpecs\":null,\"ExposedPorts\":null,\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[\"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\",\"MYSQL_MAJOR=5.7\",\"MYSQL_VERSION=5.7.9-1debian8\"],\"Cmd\":[\"/bin/bash\"],\"Image\":\"a6c42d36b3d9edf9502817033960adefb1ba820b5d8c39a2d64cf234c88506cc\",\"Volumes\":null,\"WorkingDir\":\"\",\"Entrypoint\":null,\"NetworkDisabled\":false,\"MacAddress\":\"\",\"OnBuild\":[],\"Labels\":{}},\"architecture\":\"amd64\",\"os\":\"linux\",\"Size\":1771}\n"
+                    },
+                    {
+                        "v1Compatibility": "{\"id\":\"a6c42d36b3d9edf9502817033960adefb1ba820b5d8c39a2d64cf234c88506cc\",\"parent\":\"3c9993ae191927498c92d5087ec0187bb2daec4e3bfd9c871ef8898ff508680c\",\"created\":\"2015-11-10T20:11:17.987452822Z\",\"container\":\"912e442c2125f402d09b22a7da0e906089e821dd2ba878529dce9b8818458810\",\"container_config\":{\"Hostname\":\"206de6b7c8f7\",\"Domainname\":\"\",\"User\":\"\",\"Memory\":0,\"MemorySwap\":0,\"CpuShares\":0,\"Cpuset\":\"\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"PortSpecs\":null,\"ExposedPorts\":null,\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[\"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\",\"MYSQL_MAJOR=5.7\",\"MYSQL_VERSION=5.7.9-1debian8\"],\"Cmd\":[\"/bin/sh\",\"-c\",\"{ \\u0009\\u0009echo mysql-community-server mysql-community-server/data-dir select ''; \\u0009\\u0009echo mysql-community-server mysql-community-server/root-pass password ''; \\u0009\\u0009echo mysql-community-server mysql-community-server/re-root-pass password ''; \\u0009\\u0009echo mysql-community-server mysql-community-server/remove-test-db select false; \\u0009} | debconf-set-selections \\u0009\\u0026\\u0026 apt-get update \\u0026\\u0026 apt-get install -y mysql-server=\\\"${MYSQL_VERSION}\\\" \\u0026\\u0026 rm -rf /var/lib/apt/lists/* \\u0009\\u0026\\u0026 rm -rf /var/lib/mysql \\u0026\\u0026 mkdir -p /var/lib/mysql\"],\"Image\":\"3c9993ae191927498c92d5087ec0187bb2daec4e3bfd9c871ef8898ff508680c\",\"Volumes\":null,\"WorkingDir\":\"\",\"Entrypoint\":null,\"NetworkDisabled\":false,\"MacAddress\":\"\",\"OnBuild\":[],\"Labels\":{}},\"docker_version\":\"1.9.0\",\"config\":{\"Hostname\":\"206de6b7c8f7\",\"Domainname\":\"\",\"User\":\"\",\"Memory\":0,\"MemorySwap\":0,\"CpuShares\":0,\"Cpuset\":\"\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"PortSpecs\":null,\"ExposedPorts\":null,\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[\"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\",\"MYSQL_MAJOR=5.7\",\"MYSQL_VERSION=5.7.9-1debian8\"],\"Cmd\":[\"/bin/bash\"],\"Image\":\"3c9993ae191927498c92d5087ec0187bb2daec4e3bfd9c871ef8898ff508680c\",\"Volumes\":null,\"WorkingDir\":\"\",\"Entrypoint\":null,\"NetworkDisabled\":false,\"MacAddress\":\"\",\"OnBuild\":[],\"Labels\":{}},\"architecture\":\"amd64\",\"os\":\"linux\",\"Size\":201528198}\n"
+                    },
+                    {
+                        "v1Compatibility": "{\"id\":\"3c9993ae191927498c92d5087ec0187bb2daec4e3bfd9c871ef8898ff508680c\",\"parent\":\"523d9e7d5efc1054de1b723209cf7004f6985710ec9fd924b64323b8170966ac\",\"created\":\"2015-11-10T20:10:14.695417785Z\",\"container\":\"5c79141ebffbc8089c15e03bc8092359e956c0f07971657c90f0f693002f9d02\",\"container_config\":{\"Hostname\":\"206de6b7c8f7\",\"Domainname\":\"\",\"User\":\"\",\"Memory\":0,\"MemorySwap\":0,\"CpuShares\":0,\"Cpuset\":\"\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"PortSpecs\":null,\"ExposedPorts\":null,\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[\"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\",\"MYSQL_MAJOR=5.7\",\"MYSQL_VERSION=5.7.9-1debian8\"],\"Cmd\":[\"/bin/sh\",\"-c\",\"echo \\\"deb http://repo.mysql.com/apt/debian/ jessie mysql-${MYSQL_MAJOR}\\\" \\u003e /etc/apt/sources.list.d/mysql.list\"],\"Image\":\"523d9e7d5efc1054de1b723209cf7004f6985710ec9fd924b64323b8170966ac\",\"Volumes\":null,\"WorkingDir\":\"\",\"Entrypoint\":null,\"NetworkDisabled\":false,\"MacAddress\":\"\",\"OnBuild\":[],\"Labels\":{}},\"docker_version\":\"1.9.0\",\"config\":{\"Hostname\":\"206de6b7c8f7\",\"Domainname\":\"\",\"User\":\"\",\"Memory\":0,\"MemorySwap\":0,\"CpuShares\":0,\"Cpuset\":\"\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"PortSpecs\":null,\"ExposedPorts\":null,\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[\"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\",\"MYSQL_MAJOR=5.7\",\"MYSQL_VERSION=5.7.9-1debian8\"],\"Cmd\":[\"/bin/bash\"],\"Image\":\"523d9e7d5efc1054de1b723209cf7004f6985710ec9fd924b64323b8170966ac\",\"Volumes\":null,\"WorkingDir\":\"\",\"Entrypoint\":null,\"NetworkDisabled\":false,\"MacAddress\":\"\",\"OnBuild\":[],\"Labels\":{}},\"architecture\":\"amd64\",\"os\":\"linux\",\"Size\":55}\n"
+                    },
+                    {
+                        "v1Compatibility": "{\"id\":\"523d9e7d5efc1054de1b723209cf7004f6985710ec9fd924b64323b8170966ac\",\"parent\":\"a019b92678d98a9c84cd188d0ae4e9bb2177087be099b8a7189d49bb90ca86ac\",\"created\":\"2015-11-10T20:10:13.225219417Z\",\"container\":\"02524451afe66535f0089ab7f344df74a37064838e226b40930caffb720d4a58\",\"container_config\":{\"Hostname\":\"206de6b7c8f7\",\"Domainname\":\"\",\"User\":\"\",\"Memory\":0,\"MemorySwap\":0,\"CpuShares\":0,\"Cpuset\":\"\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"PortSpecs\":null,\"ExposedPorts\":null,\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[\"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\",\"MYSQL_MAJOR=5.7\",\"MYSQL_VERSION=5.7.9-1debian8\"],\"Cmd\":[\"/bin/sh\",\"-c\",\"#(nop) ENV MYSQL_VERSION=5.7.9-1debian8\"],\"Image\":\"a019b92678d98a9c84cd188d0ae4e9bb2177087be099b8a7189d49bb90ca86ac\",\"Volumes\":null,\"WorkingDir\":\"\",\"Entrypoint\":null,\"NetworkDisabled\":false,\"MacAddress\":\"\",\"OnBuild\":[],\"Labels\":{}},\"docker_version\":\"1.9.0\",\"config\":{\"Hostname\":\"206de6b7c8f7\",\"Domainname\":\"\",\"User\":\"\",\"Memory\":0,\"MemorySwap\":0,\"CpuShares\":0,\"Cpuset\":\"\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"PortSpecs\":null,\"ExposedPorts\":null,\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[\"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\",\"MYSQL_MAJOR=5.7\",\"MYSQL_VERSION=5.7.9-1debian8\"],\"Cmd\":[\"/bin/bash\"],\"Image\":\"a019b92678d98a9c84cd188d0ae4e9bb2177087be099b8a7189d49bb90ca86ac\",\"Volumes\":null,\"WorkingDir\":\"\",\"Entrypoint\":null,\"NetworkDisabled\":false,\"MacAddress\":\"\",\"OnBuild\":[],\"Labels\":{}},\"architecture\":\"amd64\",\"os\":\"linux\",\"Size\":0}\n"
+                    },
+                    {
+                        "v1Compatibility": "{\"id\":\"a019b92678d98a9c84cd188d0ae4e9bb2177087be099b8a7189d49bb90ca86ac\",\"parent\":\"7b27836f1fd6c282d1beee27de7ab012563ae35d071f8f2a8f47dc4616f1b2b3\",\"created\":\"2015-11-10T20:10:12.6810513Z\",\"container\":\"de08af99763a016723861d58a0c3024fa4cf84fc483346661172eb6e1c787921\",\"container_config\":{\"Hostname\":\"206de6b7c8f7\",\"Domainname\":\"\",\"User\":\"\",\"Memory\":0,\"MemorySwap\":0,\"CpuShares\":0,\"Cpuset\":\"\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"PortSpecs\":null,\"ExposedPorts\":null,\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[\"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\",\"MYSQL_MAJOR=5.7\"],\"Cmd\":[\"/bin/sh\",\"-c\",\"#(nop) ENV MYSQL_MAJOR=5.7\"],\"Image\":\"7b27836f1fd6c282d1beee27de7ab012563ae35d071f8f2a8f47dc4616f1b2b3\",\"Volumes\":null,\"WorkingDir\":\"\",\"Entrypoint\":null,\"NetworkDisabled\":false,\"MacAddress\":\"\",\"OnBuild\":[],\"Labels\":{}},\"docker_version\":\"1.9.0\",\"config\":{\"Hostname\":\"206de6b7c8f7\",\"Domainname\":\"\",\"User\":\"\",\"Memory\":0,\"MemorySwap\":0,\"CpuShares\":0,\"Cpuset\":\"\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"PortSpecs\":null,\"ExposedPorts\":null,\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[\"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\",\"MYSQL_MAJOR=5.7\"],\"Cmd\":[\"/bin/bash\"],\"Image\":\"7b27836f1fd6c282d1beee27de7ab012563ae35d071f8f2a8f47dc4616f1b2b3\",\"Volumes\":null,\"WorkingDir\":\"\",\"Entrypoint\":null,\"NetworkDisabled\":false,\"MacAddress\":\"\",\"OnBuild\":[],\"Labels\":{}},\"architecture\":\"amd64\",\"os\":\"linux\",\"Size\":0}\n"
+                    },
+                    {
+                        "v1Compatibility": "{\"id\":\"7b27836f1fd6c282d1beee27de7ab012563ae35d071f8f2a8f47dc4616f1b2b3\",\"parent\":\"33dcf29c1ddf0bfe1de53b82b63237c3b4429299026ef8c683a1255e22fe831d\",\"created\":\"2015-11-10T20:08:26.36731495Z\",\"container\":\"c92de5a527b82b64f30734ec28bfbc772ee6a53e1e06af77327354c205170225\",\"container_config\":{\"Hostname\":\"206de6b7c8f7\",\"Domainname\":\"\",\"User\":\"\",\"Memory\":0,\"MemorySwap\":0,\"CpuShares\":0,\"Cpuset\":\"\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"PortSpecs\":null,\"ExposedPorts\":null,\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[\"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\"],\"Cmd\":[\"/bin/sh\",\"-c\",\"apt-key adv --keyserver ha.pool.sks-keyservers.net --recv-keys A4A9406876FCBD3C456770C88C718D3B5072E1F5\"],\"Image\":\"33dcf29c1ddf0bfe1de53b82b63237c3b4429299026ef8c683a1255e22fe831d\",\"Volumes\":null,\"WorkingDir\":\"\",\"Entrypoint\":null,\"NetworkDisabled\":false,\"MacAddress\":\"\",\"OnBuild\":[],\"Labels\":{}},\"docker_version\":\"1.9.0\",\"config\":{\"Hostname\":\"206de6b7c8f7\",\"Domainname\":\"\",\"User\":\"\",\"Memory\":0,\"MemorySwap\":0,\"CpuShares\":0,\"Cpuset\":\"\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"PortSpecs\":null,\"ExposedPorts\":null,\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[\"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\"],\"Cmd\":[\"/bin/bash\"],\"Image\":\"33dcf29c1ddf0bfe1de53b82b63237c3b4429299026ef8c683a1255e22fe831d\",\"Volumes\":null,\"WorkingDir\":\"\",\"Entrypoint\":null,\"NetworkDisabled\":false,\"MacAddress\":\"\",\"OnBuild\":[],\"Labels\":{}},\"architecture\":\"amd64\",\"os\":\"linux\",\"Size\":20518}\n"
+                    },
+                    {
+                        "v1Compatibility": "{\"id\":\"33dcf29c1ddf0bfe1de53b82b63237c3b4429299026ef8c683a1255e22fe831d\",\"parent\":\"45534ee3011a55033eff1b325f46d9b5120820bfb39abb04544552405d2e5980\",\"created\":\"2015-11-10T20:04:52.86342726Z\",\"container\":\"ac7c43e7b4482a511bff50844c605852e41bb09dfd2af757aca9db268dc01468\",\"container_config\":{\"Hostname\":\"206de6b7c8f7\",\"Domainname\":\"\",\"User\":\"\",\"Memory\":0,\"MemorySwap\":0,\"CpuShares\":0,\"Cpuset\":\"\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"PortSpecs\":null,\"ExposedPorts\":null,\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[\"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\"],\"Cmd\":[\"/bin/sh\",\"-c\",\"apt-get update \\u0026\\u0026 apt-get install -y perl --no-install-recommends \\u0026\\u0026 rm -rf /var/lib/apt/lists/*\"],\"Image\":\"45534ee3011a55033eff1b325f46d9b5120820bfb39abb04544552405d2e5980\",\"Volumes\":null,\"WorkingDir\":\"\",\"Entrypoint\":null,\"NetworkDisabled\":false,\"MacAddress\":\"\",\"OnBuild\":[],\"Labels\":{}},\"docker_version\":\"1.9.0\",\"config\":{\"Hostname\":\"206de6b7c8f7\",\"Domainname\":\"\",\"User\":\"\",\"Memory\":0,\"MemorySwap\":0,\"CpuShares\":0,\"Cpuset\":\"\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"PortSpecs\":null,\"ExposedPorts\":null,\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[\"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\"],\"Cmd\":[\"/bin/bash\"],\"Image\":\"45534ee3011a55033eff1b325f46d9b5120820bfb39abb04544552405d2e5980\",\"Volumes\":null,\"WorkingDir\":\"\",\"Entrypoint\":null,\"NetworkDisabled\":false,\"MacAddress\":\"\",\"OnBuild\":[],\"Labels\":{}},\"architecture\":\"amd64\",\"os\":\"linux\",\"Size\":32831408}\n"
+                    },
+                    {
+                        "v1Compatibility": "{\"id\":\"45534ee3011a55033eff1b325f46d9b5120820bfb39abb04544552405d2e5980\",\"parent\":\"f45838e4380458cec56590c14de1e1b0db6291135469f372ac152e319f106e16\",\"created\":\"2015-11-10T19:34:40.219349287Z\",\"container\":\"f7efda85fa60a41d54540788ec93c51060c189cd5c2e1e4225c152ca72faf476\",\"container_config\":{\"Hostname\":\"206de6b7c8f7\",\"Domainname\":\"\",\"User\":\"\",\"Memory\":0,\"MemorySwap\":0,\"CpuShares\":0,\"Cpuset\":\"\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"PortSpecs\":null,\"ExposedPorts\":null,\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[\"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\"],\"Cmd\":[\"/bin/sh\",\"-c\",\"mkdir /docker-entrypoint-initdb.d\"],\"Image\":\"f45838e4380458cec56590c14de1e1b0db6291135469f372ac152e319f106e16\",\"Volumes\":null,\"WorkingDir\":\"\",\"Entrypoint\":null,\"NetworkDisabled\":false,\"MacAddress\":\"\",\"OnBuild\":[],\"Labels\":{}},\"docker_version\":\"1.9.0\",\"config\":{\"Hostname\":\"206de6b7c8f7\",\"Domainname\":\"\",\"User\":\"\",\"Memory\":0,\"MemorySwap\":0,\"CpuShares\":0,\"Cpuset\":\"\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"PortSpecs\":null,\"ExposedPorts\":null,\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[\"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\"],\"Cmd\":[\"/bin/bash\"],\"Image\":\"f45838e4380458cec56590c14de1e1b0db6291135469f372ac152e319f106e16\",\"Volumes\":null,\"WorkingDir\":\"\",\"Entrypoint\":null,\"NetworkDisabled\":false,\"MacAddress\":\"\",\"OnBuild\":[],\"Labels\":{}},\"architecture\":\"amd64\",\"os\":\"linux\",\"Size\":0}\n"
+                    },
+                    {
+                        "v1Compatibility": "{\"id\":\"f45838e4380458cec56590c14de1e1b0db6291135469f372ac152e319f106e16\",\"parent\":\"1d6f63d023f51ae1bbc8c5623bcde3de05751dbe9bba5ae4b3405005f8b856c9\",\"created\":\"2015-11-10T19:34:38.703468983Z\",\"container\":\"d1c6348c4effc70c42914cb76dbb0c662fc29dc02bbbb95967fdac7183dd727a\",\"container_config\":{\"Hostname\":\"206de6b7c8f7\",\"Domainname\":\"\",\"User\":\"\",\"Memory\":0,\"MemorySwap\":0,\"CpuShares\":0,\"Cpuset\":\"\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"PortSpecs\":null,\"ExposedPorts\":null,\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[\"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\"],\"Cmd\":[\"/bin/sh\",\"-c\",\"groupadd -r mysql \\u0026\\u0026 useradd -r -g mysql mysql\"],\"Image\":\"1d6f63d023f51ae1bbc8c5623bcde3de05751dbe9bba5ae4b3405005f8b856c9\",\"Volumes\":null,\"WorkingDir\":\"\",\"Entrypoint\":null,\"NetworkDisabled\":false,\"MacAddress\":\"\",\"OnBuild\":[],\"Labels\":{}},\"docker_version\":\"1.9.0\",\"config\":{\"Hostname\":\"206de6b7c8f7\",\"Domainname\":\"\",\"User\":\"\",\"Memory\":0,\"MemorySwap\":0,\"CpuShares\":0,\"Cpuset\":\"\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"PortSpecs\":null,\"ExposedPorts\":null,\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[\"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\"],\"Cmd\":[\"/bin/bash\"],\"Image\":\"1d6f63d023f51ae1bbc8c5623bcde3de05751dbe9bba5ae4b3405005f8b856c9\",\"Volumes\":null,\"WorkingDir\":\"\",\"Entrypoint\":null,\"NetworkDisabled\":false,\"MacAddress\":\"\",\"OnBuild\":[],\"Labels\":{}},\"architecture\":\"amd64\",\"os\":\"linux\",\"Size\":330368}\n"
+                    },
+                    {
+                        "v1Compatibility": "{\"id\":\"1d6f63d023f51ae1bbc8c5623bcde3de05751dbe9bba5ae4b3405005f8b856c9\",\"parent\":\"ef2704e74ecc859442589f139553775bfa5a8a892afb40e480017fe23036eec8\",\"created\":\"2015-11-10T00:31:11.959319476Z\",\"container\":\"ba1f8314e1b51b1d4d75568e69230a7d6b327fba17eb1929c3ee8b63ba6e240b\",\"container_config\":{\"Hostname\":\"206de6b7c8f7\",\"Domainname\":\"\",\"User\":\"\",\"Memory\":0,\"MemorySwap\":0,\"CpuShares\":0,\"Cpuset\":\"\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"PortSpecs\":null,\"ExposedPorts\":null,\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":null,\"Cmd\":[\"/bin/sh\",\"-c\",\"#(nop) CMD [\\\"/bin/bash\\\"]\"],\"Image\":\"ef2704e74ecc859442589f139553775bfa5a8a892afb40e480017fe23036eec8\",\"Volumes\":null,\"WorkingDir\":\"\",\"Entrypoint\":null,\"NetworkDisabled\":false,\"MacAddress\":\"\",\"OnBuild\":null,\"Labels\":{}},\"docker_version\":\"1.9.0\",\"config\":{\"Hostname\":\"206de6b7c8f7\",\"Domainname\":\"\",\"User\":\"\",\"Memory\":0,\"MemorySwap\":0,\"CpuShares\":0,\"Cpuset\":\"\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"PortSpecs\":null,\"ExposedPorts\":null,\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":null,\"Cmd\":[\"/bin/bash\"],\"Image\":\"ef2704e74ecc859442589f139553775bfa5a8a892afb40e480017fe23036eec8\",\"Volumes\":null,\"WorkingDir\":\"\",\"Entrypoint\":null,\"NetworkDisabled\":false,\"MacAddress\":\"\",\"OnBuild\":null,\"Labels\":{}},\"architecture\":\"amd64\",\"os\":\"linux\",\"Size\":0}\n"
+                    },
+                    {
+                        "v1Compatibility": "{\"id\":\"ef2704e74ecc859442589f139553775bfa5a8a892afb40e480017fe23036eec8\",\"created\":\"2015-11-10T00:31:06.742694709Z\",\"container\":\"206de6b7c8f70250e6c76ca1d68bbb3373ced66804c8557205a0b783a697722a\",\"container_config\":{\"Hostname\":\"206de6b7c8f7\",\"Domainname\":\"\",\"User\":\"\",\"Memory\":0,\"MemorySwap\":0,\"CpuShares\":0,\"Cpuset\":\"\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"PortSpecs\":null,\"ExposedPorts\":null,\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":null,\"Cmd\":[\"/bin/sh\",\"-c\",\"#(nop) ADD file:3037fa9e903e9ae5338ac1dd3adf8d3ff2d165d3a9b550c64879651582c77dc4 in /\"],\"Image\":\"\",\"Volumes\":null,\"WorkingDir\":\"\",\"Entrypoint\":null,\"NetworkDisabled\":false,\"MacAddress\":\"\",\"OnBuild\":null,\"Labels\":null},\"docker_version\":\"1.9.0\",\"config\":{\"Hostname\":\"206de6b7c8f7\",\"Domainname\":\"\",\"User\":\"\",\"Memory\":0,\"MemorySwap\":0,\"CpuShares\":0,\"Cpuset\":\"\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"PortSpecs\":null,\"ExposedPorts\":null,\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":null,\"Cmd\":null,\"Image\":\"\",\"Volumes\":null,\"WorkingDir\":\"\",\"Entrypoint\":null,\"NetworkDisabled\":false,\"MacAddress\":\"\",\"OnBuild\":null,\"Labels\":null},\"architecture\":\"amd64\",\"os\":\"linux\",\"Size\":125112192}\n"
+                    }
+                ],
+                "schemaVersion": 1,
+                "signatures": [
+                    {
+                        "header": {
+                            "jwk": {
+                                "crv": "P-256",
+                                "kid": "WP7X:PAP2:ET62:UH5V:EZKL:VDZE:N7VW:MMTK:X2MD:XPY6:C56J:Q4ED",
+                                "kty": "EC",
+                                "x": "dg0a18uSKgGaTSOm0f5T-E5jaQKm2u3mREazJHHW3FY",
+                                "y": "Ps2LnXILtAXKcy7OfkynZy5WQB8vBR3Vy_Yj2A5K7Y8"
+                            },
+                            "alg": "ES256"
+                        },
+                        "signature": "Ppz4JehWY9qYTYWci1OplJnzZfikoasw5etob-Y7FVU35-T1KIT10ISe_53sqpxQ5khrTz1IhaTLdD5x79USKg",
+                        "protected": "eyJmb3JtYXRMZW5ndGgiOjMzMzczLCJmb3JtYXRUYWlsIjoiQ24wIiwidGltZSI6IjIwMTUtMTEtMTdUMTA6MDk6NDlaIn0"
+                    }
+                ]
+            }
+        }
+
+    });
+
+    dataSource.getRepositories = function () {
         return {
-            "Volumes": [
-                {
-                    "Name": "tardis",
-                    "Driver": "local",
-                    "Mountpoint": "/var/lib/docker/volumes/tardis"
-                }
-            ]
-        };
+            "repositories": _.map(repos, function (repo, repoName) {
+                return repoName;
+            })
+        }
     };
     dataSource.getVersion = function () {
         return {
@@ -115,6 +221,16 @@ define([], function () {
             "ApiVersion": "1.20",
             "Experimental": false
         };
+    };
+    dataSource.getTags = function (repo) {
+        return {
+            name: repo, tags: _.map(repos[repo], function (tag, tagName) {
+                return tagName;
+            })
+        };
+    };
+    dataSource.getManifest = function (repo, tag) {
+        return repos[repo][tag];
     };
     return dataSource;
 });

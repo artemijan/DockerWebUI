@@ -21,6 +21,11 @@ define(
                     return {
                         'request': function (config) {
                             // handle on request action
+                            if (config.apiName === 'DockerWebUI') {
+                                if (appConfig.useFakeAPIService === false) {
+                                    config.url = appConfig.apiUrl + config.url;
+                                }
+                            }
                             return config;
                         },
                         'requestError': function (rejection) {

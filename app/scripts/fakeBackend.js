@@ -13,18 +13,22 @@ define(
         App.run([
             '$httpBackend',
             function ($httpBackend) {
-                $httpBackend.whenGET(/\/containers\/json/).respond(function (method, url, data) {
-                    return [200, fakeDataSource.getContainers()];
-                });
-
-                $httpBackend.whenGET(/\/images\/json/).respond(function (method, url, data) {
-                    return [200, fakeDataSource.getImages()];
-                });
-                $httpBackend.whenGET(/\/volumes/).respond(function (method, url, data) {
-                    return [200, fakeDataSource.getVolumes()];
-                });
-                $httpBackend.whenGET(/\/version/).respond(function (method, url, data) {
+                $httpBackend.whenGET(/\/v2\/?$/).respond(function (method, url, data) {
                     return [200, fakeDataSource.getVersion()];
+                });
+                $httpBackend.whenGET(/\/v2\/_catalog/).respond(function (method, url, data) {
+                    return [200, fakeDataSource.getRepositories()];
+                });
+                $httpBackend.whenGET(/\/v2\/\w*\/tags\/list/).respond(function (method, url, data) {
+                    var data = url.split('/');
+                    var repo = data[2];
+                    return [200, fakeDataSource.getTags(repo)];
+                });
+                $httpBackend.whenGET(/\/v2\/\w*\/manifests\/\w*/).respond(function (method, url, data) {
+                    var data = url.split('/');
+                    var repo = data[2];
+                    var tag = data[4];
+                    return [200, fakeDataSource.getManifest(repo, tag)];
                 });
                 // Pass through everything else
                 $httpBackend.whenGET(/.*/).passThrough();

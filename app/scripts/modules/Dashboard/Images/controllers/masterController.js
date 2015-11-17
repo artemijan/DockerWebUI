@@ -16,8 +16,8 @@ define(
         function images($q, $log, dataService) {
             var deferred = $q.defer();
             dataService.list()
-                .then(function (containers) {
-                    deferred.resolve(containers);
+                .then(function (response) {
+                    deferred.resolve(response.repositories);
                 })
                 .catch(function (error) {
                     deferred.resolve(null);

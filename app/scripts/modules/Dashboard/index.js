@@ -6,9 +6,8 @@ define(
     /**
      * Submodules
      */
-        './Containers/index',
         './Images/index',
-        './Volumes/index',
+        './Tags/index',
         './controllers/masterController'
     ],
     function () {

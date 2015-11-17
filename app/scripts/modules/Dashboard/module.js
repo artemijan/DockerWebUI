@@ -6,9 +6,8 @@ define(['angular'],
         'use strict';
         return angular.module('DockerWebUI.Dashboard', [
             'ui.router',
-            'DockerWebUI.Dashboard.Containers',
             'DockerWebUI.Dashboard.Images',
-            'DockerWebUI.Dashboard.Volumes'
+            'DockerWebUI.Dashboard.Tags'
         ]).config([
             '$stateProvider',
             function ($stateProvider) {

@@ -19,7 +19,16 @@ define(['angular'],
                         .state('dashboard.images.list', $moduleManager.stateForController('DockerWebUI.Dashboard.Images.ListController', {
                             controllerAs: 'controller',
                             url: '/list',
-                            templateUrl: 'views/Dashboard/Images/activities/list.html'
+                            templateUrl: 'views/Dashboard/Images/activities/list.html',
+                            data: {
+                                breadcrumbs: [
+                                    {
+                                        name: 'Home',
+                                        state: 'dashboard.home'
+                                    },
+                                    'Images'
+                                ]
+                            }
                         }))
                 }
             ])

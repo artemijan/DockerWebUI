@@ -1,27 +1,17 @@
+<breadcrumbs class="breadcrumb"></breadcrumbs>
 <div class="images-list-container">
     <div ng-include="'views/Dashboard/activities/container-header.html'"></div>
     <div class="list-group">
-        <a class="list-group-item" ng-repeat="item in controller.list">
+        <a class="list-group-item" ng-repeat="item in controller.list | filter:controller.searchFor">
             <div class="pull-right actions-control">
-                <span class="control-item glyphicon glyphicon-pencil"></span>
-                <span class="control-item glyphicon glyphicon-trash"></span>
+                <span class="control-item glyphicon glyphicon-trash" title="delete all tags"></span>
             </div>
-            <h5 class="list-group-item-heading truncate">
-                <span class="object-property">ImageId: </span>
-                <span class="object-value" ng-bind="item.Id"></span>
+            <h5 class="list-group-item-heading truncate" ui-sref="dashboard.tags.list({repo:item})">
+                <span class="object-property">Image name: </span>
+                <span class="object-value" ng-bind="item"></span>
 
                 <div class="header-divider"></div>
             </h5>
-
-            <p class="list-group-item-text truncate">
-                <span class="object-property">Size: </span>
-                <span class="object-value" ng-bind="item.Size"></span>
-            </p>
-
-            <p class="list-group-item-text truncate">
-                <span class="object-property">Virtual size: </span>
-                <span class="object-value" ng-bind="item.VirtualSize"></span>
-            </p>
         </a>
     </div>
 </div>
