@@ -1,5 +1,8 @@
 <div class="tag-content pull-right">
-
+    <div class="pull-right btn-group btn-group-xs">
+                <span class="btn btn-default " ng-click="controller.toggleView()"
+                      ng-class="{'active':controller.view=='json'}" title="delete this tag">json</span>
+    </div>
     <div class="history-container" ng-show="controller.manifests[controller.currentTag].parsedHistory">
         <json-formatter ng-if="controller.view=='json'"
                         json="controller.manifests[controller.currentTag].parsedHistory"></json-formatter>
@@ -57,7 +60,7 @@
                               ng-class="{'glyphicon-collapse-down':!showDetails,'glyphicon-collapse-up':showDetails}"></span>
                     </a>
                 </div>
-                <div id="show-more-accordion" class="show-details collapse out">
+                <div id="show-more-accordion" class="show-details collapse" ng-class="{'out':!showDetails, 'in':showDetails}">
                     <div class="object-displayer">
                         <span class="object-property">Entry point: </span>
                             <span class="object-value"
@@ -85,9 +88,6 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div ng-show="!controller.manifests[controller.currentTag].parsedHistory">
-        <h3>There is no manifest</h3>
     </div>
 
 </div>

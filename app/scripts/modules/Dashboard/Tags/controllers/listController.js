@@ -9,6 +9,7 @@ define(['../module'], function (module) {
     };
     Controller.$inject = [
         '$scope',
+        '$timeout',
         'growl',
         '$log',
         '$stateParams',
@@ -16,7 +17,7 @@ define(['../module'], function (module) {
         'tags',
         'firstManifest'
     ];
-    function Controller($scope, growl, $log, $stateParams, dataService, tags, manifest) {
+    function Controller($scope, $timeout, growl, $log, $stateParams, dataService, tags, manifest) {
         var vm = this;
         var repoName = $stateParams.repo;
         vm.headerName = 'Image: ' + repoName;
@@ -60,8 +61,11 @@ define(['../module'], function (module) {
             if (tag == vm.currentTag) {
                 return;
             }
-
-            vm.currentTag = tag;
+            vm.currentTag = null;
+            $scope.showDetails = false;
+            $timeout(function () {
+                vm.currentTag = tag; //for animation
+            },10);
             if (vm.manifests[tag]) {
                 return;
             }
