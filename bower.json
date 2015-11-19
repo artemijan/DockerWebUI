@@ -14,6 +14,7 @@
     "angular-bootstrap": "~0.14.3",
     "lodash": "~3.7.0",
     "angular-mocks": "~1.4.7",
-    "angular-growl-v2": "~0.7.9"
+    "angular-growl-v2": "~0.7.9",
+    "json-formatter": "~0.4.1"
   }
 }

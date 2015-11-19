@@ -3,10 +3,13 @@
     <div ng-include="'views/Dashboard/activities/container-header.html'"></div>
     <div class="tags-container-holder">
         <div class="list-group pull-left">
-            <a class="list-group-item" ng-repeat="item in controller.list | filter:controller.searchFor">
-                <div class="pull-right actions-control">
-                <span class="control-item glyphicon glyphicon-trash" ng-click="controller.delete(item)"
-                      title="delete this tag"></span>
+            <a class="list-group-item" ng-class="{'activated':item===controller.currentTag}"
+               ng-repeat="item in controller.list | filter:controller.searchFor">
+                <div class="pull-right btn-group btn-group-xs actions-control">
+                    <span class="btn btn-default " ng-click="controller.toggleView()" ng-class="{'active':controller.view=='json'}" title="delete this tag">json</span>
+                    <div class="btn btn-default">
+                        <span class="control-item glyphicon glyphicon-trash" ng-click="controller.delete(item)" title="delete this tag"></span>
+                    </div>
                 </div>
                 <h5 class="list-group-item-heading truncate" ng-click="controller.inspect(item)">
                     <span class="object-property">Tag name: </span>
@@ -16,86 +19,6 @@
                 </h5>
             </a>
         </div>
-        <div class="tag-content pull-right">
-
-            <div class="history-container" ng-show="controller.manifests[controller.currentTag].parsedHistory">
-
-                <div class="object-displayer">
-                    <span class="object-property">Architecture: </span>
-                        <span class="object-value"
-                              ng-bind="controller.manifests[controller.currentTag].architecture"></span>
-                </div>
-                <div class="object-displayer">
-                    <span class="object-property">Created: </span>
-                        <span class="object-value"
-                              ng-bind="controller.manifests[controller.currentTag].parsedHistory.created"></span>
-                </div>
-                <h5 class="submenu-item label label-default">Config</h5>
-
-                <div class="submenu-config">
-                    <div class="object-displayer">
-                        <span class="object-property">Domain name: </span>
-                            <span class="object-value"
-                                  ng-bind="controller.manifests[controller.currentTag].parsedHistory.config.Domainname"></span>
-                    </div>
-                    <div class="object-displayer">
-                        <span class="object-property">Exposed ports: </span>
-
-                        <div class="margin-left-item object-value"
-                             ng-repeat="(port,value) in controller.manifests[controller.currentTag].parsedHistory.config.ExposedPorts"
-                             ng-bind="port"></div>
-                    </div>
-                    <div class="object-displayer">
-                        <span class="object-property">Labels: </span>
-
-                        <div class="object-value"
-                             ng-repeat="(label,value) in controller.manifests[controller.currentTag].parsedHistory.config.Labels">
-                            <span ng-bind="label+'='"></span>
-                            <span ng-bind="value"></span>
-                        </div>
-                    </div>
-                    <div class="object-displayer">
-                        <span class="object-property">Volumes: </span>
-
-                        <div class="margin-left-item object-value"
-                             ng-repeat="(volume,value) in controller.manifests[controller.currentTag].parsedHistory.config.Volumes"
-                             ng-bind="volume"></div>
-                    </div>
-                    <div class="btn-group btn-group-xs">
-                        <a class="show-details-button btn btn-default" ng-click="toggleCollapse()" data-toggle="collapse" data-parent="#accordion" href="#show-more-accordion">Details
-                            <span class="glyphicon" ng-class="{'glyphicon-collapse-down':!showDetails,'glyphicon-collapse-up':showDetails}"></span>
-                        </a>
-                    </div>
-                    <div id="show-more-accordion" class="show-details collapse out">
-                        <div class="object-displayer">
-                            <span class="object-property">Entry point: </span>
-                            <span class="object-value"
-                                  ng-bind="controller.manifests[controller.currentTag].parsedHistory.config.Entrypoint[0]"></span>
-                        </div>
-                        <div class="object-displayer">
-                            <span class="object-property">Cmd: </span>
-                                <span class="object-value"
-                                      ng-bind="(controller.manifests[controller.currentTag].parsedHistory.config.Cmd || []).join(';')"></span>
-                        </div>
-                        <div class="object-displayer">
-                            <span class="object-property">Environment: </span>
-
-                            <div class="object-value margin-left-item"
-                                 ng-repeat="env in controller.manifests[controller.currentTag].parsedHistory.config.Env"
-                                 ng-bind="env"></div>
-                        </div>
-                        <div class="object-displayer">
-                            <span class="object-property">Working dir: </span>
-                            <span class="object-value"
-                                  ng-bind="controller.manifests[controller.currentTag].parsedHistory.config.WorkingDir"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div ng-show="!controller.manifests[controller.currentTag].parsedHistory">
-                <h3>There is no manifest</h3>
-            </div>
-
-        </div>
+        <div ng-include="'views/Dashboard/Tags/partials/tag-content.html'"></div>
     </div>
 </div>

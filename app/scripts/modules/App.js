@@ -9,6 +9,7 @@ define([
         'angular-sanitize',
         'angular-animate',
         'angular-mocks',
+        'json-formatter',
         'ui.bootstrap',
         'ui.bootstrap.tpls',
         'angular-growl',
@@ -27,6 +28,7 @@ define([
             'ui.bootstrap',
             'ui.bootstrap.tpls',
             'angular-growl',
+            'jsonFormatter',
             'DockerWebUI.Common',
             'DockerWebUI.Auth',
             'DockerWebUI.Dashboard'

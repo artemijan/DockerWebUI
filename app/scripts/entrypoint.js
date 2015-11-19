@@ -14,7 +14,8 @@ require.config({
         'angular-sanitize': '../../bower_components/angular-sanitize/angular-sanitize',
         'ui.bootstrap': '../../bower_components/angular-bootstrap/ui-bootstrap',
         'ui.bootstrap.tpls': '../../bower_components/angular-bootstrap/ui-bootstrap-tpls',
-        'angular-growl': '../../bower_components/angular-growl-v2/build/angular-growl'
+        'angular-growl': '../../bower_components/angular-growl-v2/build/angular-growl',
+        'json-formatter':'../bower_components/json-formatter/dist/json-formatter'
     },
 
     /**
@@ -28,6 +29,9 @@ require.config({
         'angular': {
             deps: ['jquery'],
             exports: 'angular'
+        },
+        'json-formatter':{
+            deps:['angular']
         },
         'angular-growl': {
             deps: ['angular', 'twitter-bootstrap']

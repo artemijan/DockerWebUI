@@ -26,6 +26,14 @@ define(['../module'], function (module) {
         vm.delete = function (tag) {
             growl.info('Deletion is not supported yet by v2 registry.');
         };
+        vm.toggleView = function () {
+            if (vm.view != 'default') {
+                vm.view = 'default';
+            } else {
+                vm.view = 'json';
+            }
+        };
+        vm.toggleView();
         $scope.toggleCollapse = function () {
             $scope.showDetails = !$scope.showDetails;
         };
