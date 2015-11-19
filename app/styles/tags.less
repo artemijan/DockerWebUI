@@ -4,9 +4,15 @@
   }
   .list-group {
     width: 15%;
+    @media screen and (max-width: 600px) {
+      width: 30%;
+    }
   }
   .tag-content {
     width: 83%;
+    @media screen and (max-width: 600px) {
+      width: 68%;
+    }
     background-color: #F9EFE2;
     border-radius: 10px;
     padding: 5px;
@@ -17,22 +23,24 @@
     .show-details-button:hover {
       background-color: #e6e6e6;;
     }
-    .show-details-button{
+    .show-details-button {
       margin-top: 15px;
       margin-left: -10px;
-      span{
+      span {
         margin-left: 3px;
       }
     }
   }
 
   .tags-container-holder {
-    display: inline-block;
+    display: block;
     width: 100%;
   }
   .object-displayer {
     .object-value {
       font-weight: bold;
+      display: block;
+      width: 99%;
     }
   }
   .image-history {

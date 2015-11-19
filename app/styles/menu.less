@@ -30,10 +30,16 @@
   max-width: 75%;
   margin-right: auto;
   margin-left: auto;
+  @media screen and (max-width: 600px){
+    width: 100%;
+    max-width: 100%;
+    padding-right: 20px;
+    padding-left: 5px;
+  }
 }
 
 .docker-version {
-  .docker-version-header{
+  .docker-version-header {
     font-weight: bold;
   }
   .docker-version-item {

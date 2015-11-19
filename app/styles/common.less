@@ -32,6 +32,8 @@
 }
 
 .menu-item-container {
+  display: inline-block;
+  width: 100%;
   .list-group {
     .actions-control {
       clear: both;
@@ -64,5 +66,8 @@
   }
   .object-value {
     font-weight: bold;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 }
