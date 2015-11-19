@@ -9,7 +9,7 @@ define([
     'globalConfig',
     './moduleManager',
     './modules/App',
-    'fakeBackend',
+    //'fakeBackend',
     'setup'
 ], function (require, domReady, angular) {
     'use strict';
