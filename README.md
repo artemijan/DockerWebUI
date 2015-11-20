@@ -1,5 +1,5 @@
 # DockerWebUI
-user web interface for docker registry based on angular
+user web interface for [docker registry (v2)](https://docs.docker.com/registry/spec/api/) based on angular
 ### Main things
 - common
 
