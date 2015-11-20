@@ -72,7 +72,7 @@ setup environment in config/env.js "dev" property
 ### All configs are in config folder
 you can configure build process in env.js
 
-## How can i configure it for Nginx
+## How I can configure it for Nginx
 
 nginx config file
 
