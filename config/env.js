@@ -5,9 +5,9 @@ var environments = {
     "dev": {
         showVersionInfo: true,
         siteUrl: 'http://0.0.0.0:9000',
-        apiUrl: 'http://10.10.1.58:9001',
+        apiUrl: 'http://localhost:9001',
         useHeaderAuth: false,
-        useCookiesAuth: true,
+        useCookiesAuth: false,
         useFakeAPIService: false,
         minimizeJs: false,
         minimizeCss: false,

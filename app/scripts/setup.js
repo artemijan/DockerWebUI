@@ -12,9 +12,11 @@ define(
         App.config([
             '$httpProvider',
             function ($httpProvider) {
-                $httpProvider.defaults.headers.common['X-Requested-By'] = 'DockerWebUI';
-                if (appConfig.useCookiesAuth) {
-                    $httpProvider.defaults.withCredentials = true;
+                if(appConfig.useHeaderAuth){
+                    $httpProvider.defaults.headers.common['X-Requested-By'] = 'DockerWebUI';
+                    if (appConfig.useCookiesAuth) {
+                        $httpProvider.defaults.withCredentials = true;
+                    }
                 }
                 $httpProvider.interceptors.push(function ($q, $rootScope, $location, $injector) {
                     var $q = $injector.get('$q');
