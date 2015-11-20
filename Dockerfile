@@ -9,7 +9,7 @@ RUN apt-get install --no-install-recommends -y git nodejs npm nginx
 RUN ln -s /usr/bin/nodejs /usr/bin/node
 
 ADD . /DockerWebUI
-
+WORKDIR /DockerWebUI
 RUN cd /DockerWebUI; git clean -fxd
 
 RUN cd /DockerWebUI; ./setup.sh
@@ -19,3 +19,4 @@ COPY ./localhost.conf /etc/nginx/sites-enabled/
 EXPOSE 9000 9001
 
 RUN nginx -s reload
+CMD []
