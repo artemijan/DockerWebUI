@@ -15,7 +15,7 @@ require.config({
         'ui.bootstrap': '../../bower_components/angular-bootstrap/ui-bootstrap',
         'ui.bootstrap.tpls': '../../bower_components/angular-bootstrap/ui-bootstrap-tpls',
         'angular-growl': '../../bower_components/angular-growl-v2/build/angular-growl',
-        'json-formatter':'../bower_components/json-formatter/dist/json-formatter'
+        'json-formatter':'../../bower_components/json-formatter/dist/json-formatter'
     },
 
     /**

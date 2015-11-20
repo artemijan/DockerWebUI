@@ -3,14 +3,26 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
-    <script type="text/javascript" src="../bower_components/requirejs/require.js"
-            data-main="../scripts/entrypoint.js"></script>
-    <link type="text/css" rel="stylesheet" href="../styles/main.css"/>
     <meta name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui, height=device-height">
+    <!-- build:template
+  <link rel="stylesheet" href="<%= mainCssUrl %>">
+  /build-->
 </head>
 <body>
 <div ui-view="" class="menu-header-docker">
 </div>
+<!-- build:template
+<script src="vendor/requirejs/require.js"></script>
+<script>
+  require.config({
+    waitSeconds: 0,
+    baseUrl: '<%= requireJsBaseUrl %>'
+  });
+  require(['require'], function (require) {
+    require(['<%= mainJsUrl %>']);
+  });
+</script>
+/build-->
 </body>
 </html>

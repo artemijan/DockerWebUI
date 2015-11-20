@@ -13,6 +13,7 @@ module.exports = function (grunt) {
         buildMeta: {
             appVersion: grunt.file.readJSON("package.json").version,
             environment: grunt.option('env') || 'dev',
+            noCache:grunt.option('nocache') || Date.now(),
             releaseTag: grunt.option('release-tag') || grunt.option('release') || 'DEV'
         }
     };
@@ -26,15 +27,17 @@ module.exports = function (grunt) {
             //'requirejs:server',
             'less:server',
             'copy:server',
+            'processhtml:dev',
             'watch'
         ]);
     });
     grunt.registerTask('dist', function () {
         grunt.task.run([
-            'less:all',
-            'copy:scripts',
-            'copy:html',
-            'copy:fonts'
+            'autoprefixer',
+            'less:dist',
+            'copy:dist',
+            'requirejs:dist',
+            'processhtml:dist'
         ]);
     });
 };

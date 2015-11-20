@@ -9,8 +9,8 @@ var environments = {
         useHeaderAuth: false,
         useCookiesAuth: true,
         useFakeAPIService: false,
-        minimizeJs: false,
-        minimizeCss: false,
+        minimizeJs: true,
+        minimizeCss: true,
         generateSourceMaps: true
 
     }
@@ -20,7 +20,7 @@ module.exports = function (grunt, config) {
     var currentEnvName = config.buildMeta.environment;
     var defaults = {
         siteUrl: '',
-        apiUrl: 'https://hub.docker.com',
+        apiUrl: 'http://10.10.1.58:9001',
         useFakeAPIService: false,
         minimizeJs: true,
         minimizeCss: true,
