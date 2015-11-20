@@ -18,5 +18,4 @@ COPY ./localhost.conf /etc/nginx/sites-enabled/
 
 EXPOSE 9000 9001
 
-RUN nginx -s reload
 CMD []
