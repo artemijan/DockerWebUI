@@ -9,10 +9,21 @@ var environments = {
         useHeaderAuth: false,
         useCookiesAuth: true,
         useFakeAPIService: false,
+        minimizeJs: false,
+        minimizeCss: false,
+        generateSourceMaps: true
+
+    },
+    dist:{
+        showVersionInfo: false,
+        siteUrl: 'http://0.0.0.0:9000',
+        apiUrl: 'http://10.10.1.58:9001',
+        useHeaderAuth: false,
+        useCookiesAuth: true,
+        useFakeAPIService: false,
         minimizeJs: true,
         minimizeCss: true,
         generateSourceMaps: true
-
     }
 };
 var _ = require('lodash');
