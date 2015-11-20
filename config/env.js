@@ -24,6 +24,17 @@ var environments = {
         minimizeJs: true,
         minimizeCss: true,
         generateSourceMaps: true
+    },
+    fake:{
+        showVersionInfo: true,
+        siteUrl: 'http://0.0.0.0:9000',
+        apiUrl: 'http://localhost:9001',
+        useHeaderAuth: false,
+        useCookiesAuth: false,
+        useFakeAPIService: true,
+        minimizeJs: false,
+        minimizeCss: false,
+        generateSourceMaps: true
     }
 };
 var _ = require('lodash');

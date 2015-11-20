@@ -26,6 +26,16 @@ or
 grunt serve --env=dev
 ```
 
+## Using fake backend api
+
+all routes are described in app/scripts/fakeBackend.js
+
+```shell
+grunt serve --env=fake
+```
+
+that's it :)
+
 ##### if you want use real registry api allocated on your local machine
 
 nginx config
